@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap');
+
+
+.btn {
+    border-radius: 50px 0 50px 0;
+    padding: 26px 65px;
+    color: white;
+    border: none;
+    background-color: #839B97;
+    font-family: "Zen Loop";
+    font-size: 2rem;
+}
+
+.btn-clear {
+    border: 1px solid white;
+    border-radius: 50px 0 50px 0;
+    padding: 26px 65px;
+    color: white;
+    background-color: transparent;
+    font-family: "Zen Loop";
+    font-size: 2rem;
+}
