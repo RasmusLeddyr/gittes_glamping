@@ -1,1 +1,2 @@
-@import url(buttons.css); /* Brug .btn class på standardknapper med farve, .btn-clear på gennemsigtige knapper */
+@import url('buttons.css');
+@import url('footer.css');

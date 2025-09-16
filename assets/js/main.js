@@ -1,11 +1,4 @@
-// import and run component functions
+import { initFooter } from './components/footer.js';
 
-/*  Eksempel:
-import { Gallery } from "./components/gallery.js";
-Gallery();
-
-import { Header } from "./components/header-container.js";
-Header();
- */
-
-//
+console.log('[main.js] loaded');
+initFooter();
