@@ -165,6 +165,6 @@
   z-index: 3;
 }
 
-.like-btn.show {
+.like-btn.liked {
   fill: white;
 }

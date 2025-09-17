@@ -81,10 +81,10 @@ export const renderActivities = () => {
         if (!exist) {
           likedArray.push(activityToAdd);
           localStorage.setItem("likedList", JSON.stringify(likedArray));
-          btn.classList.toggle("show");
+          btn.classList.toggle("liked");
         } else {
           console.log("Aktiviteten findes allerede i like-listen");
-          btn.classList.toggle("show");
+          btn.classList.toggle("liked");
           likedArray.splice(activityToAdd, 1);
           if (likedArray.length == 0) {
             localStorage.removeItem("likedList");
