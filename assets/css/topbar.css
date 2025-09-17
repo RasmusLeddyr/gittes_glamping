@@ -1,0 +1,111 @@
+/* ===== Topbar ===== */
+.Topbar {
+  width: 100%;
+  position: absolute;         /* ligger ovenpå hero/slider */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: transparent;    /* gennemsigtig baggrund */
+
+  display: flex;              /* logo og burger i samme række */
+  align-items: center;        /* centrer vertikalt */
+  justify-content: space-between; /* logo venstre, burger højre */
+  padding: 1rem;              /* luft til kanterne */
+  box-sizing: border-box;
+}
+
+/* Logo */
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.topbar-logo__img {
+  width: 40px;
+  height: 40px;
+  display: block;
+  filter: brightness(0) invert(1); /* hvidt logo */
+}
+
+/* ===== Burger ===== */
+.burger {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: #839B97;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 20px;
+  height: 2px;
+  background: #fff;
+  display: block;
+}
+
+/* ===== Overlay-menu ===== */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  display: none; /* skjult fra start */
+  background: #839B97;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  /* Brug samme font som hero */
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  font-size: 1.8rem;
+  color: #fff;
+  text-decoration: none;
+  transition: color .2s ease;
+  font-family: inherit; /* arver fra .mobile-menu */
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:focus {
+  color: #f0d98c;
+  outline: none;
+}
+
+/* Luk-knap */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.2rem;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+
+  font-family: inherit;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ingen scroll i baggrunden når menu er aktiv */
+body.no-scroll {
+  overflow: hidden;
+}
