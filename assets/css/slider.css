@@ -37,7 +37,7 @@
     rgba(47, 79, 83, 0.58) 40%,
     rgba(47, 79, 83, 0.48) 100%
   );
-  z-index: 1; /* over billedet, under tekst */
+  z-index: 1; /* over billedet, under tekst */  
   backdrop-filter: blur(1.5px);
   -webkit-backdrop-filter: blur(1.5px);
 }
