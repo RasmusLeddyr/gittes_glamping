@@ -24,9 +24,12 @@ const activityTmpl = (activity) => {
             <button class="activity-readmore btn-clear">Læs mere</button>
             <p class="activity-readmore-text">${activity.description}</p>
         </div>
+        <img src="assets/img/icons/heart-solid.svg" alt="Heart Icon" class="like-btn" id="${activity._id}">
     </div>
     `;
 }
+
+let likedArray = JSON.parse(localStorage.getItem("likedList")) || [];
 
 export const renderActivities = () => {
     
@@ -62,7 +65,35 @@ export const renderActivities = () => {
             
         })
 
-    
     });
+
+    
+
+    const likeButton = () => {
+
+    const likeBtns = document.querySelectorAll('.like-btn')
+
+    likeBtns.forEach(btn => {
+
+        btn.addEventListener('click', (e) => {
+            const activityID = e.target.id
+            const activityToAdd = activities.data.find(activity => activity._id == activityID)
+
+            const exist = likedArray.find(liked => liked._id == activityID)
+
+            if (!exist) {
+                likedArray.push(activityToAdd)
+                localStorage.setItem("likedList", JSON.stringify(likedArray));
+            } else {
+                console.log("Produktet findes allerede i like-listen")
+            }
+
+        })
+
+    })
+
+}
+
+likeButton()
 
 }
