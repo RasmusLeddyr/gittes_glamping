@@ -9,6 +9,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Brug samme font som hero og burger */
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Nulstil body margin (ellers får du hvid kant rundt om siden) */
@@ -58,6 +64,7 @@ body {
   align-items: center;
   gap: .75rem;
 }
+
 /* Gør kun Gittes Glamping logoet hvidt */
 .footer-logo {
   width: 32px;      
@@ -65,9 +72,13 @@ body {
   display: block;
   filter: brightness(0) invert(1); /* gør logoet hvidt */
 }
+
 .footer-text {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem; /* lidt større for bedre læsbarhed */
   font-weight: 400;
   color: #fff;
+
+  font-family: inherit; /* arver fra .Footer */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
