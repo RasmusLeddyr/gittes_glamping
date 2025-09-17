@@ -2,7 +2,7 @@ import { GetData } from "../fetch.js"
 const activityHero = document.querySelector('.activity-hero')
 const activityCardContainer = document.querySelector('.activity-card-container')
 
-const activities = await GetData("https://glamping-rqu9j.ondigitalocean.app/activities/");
+const activities = await GetData("https://glamping-rqu9j.ondigitalocean.app/activities/", "data");
 
 const activityHeroTmpl = () => {
         return ` <img src="assets/img/heros/aktiviteter.jpg" alt="">
@@ -38,7 +38,7 @@ export const renderActivities = () => {
     }
 
     if (activityCardContainer) {
-        activities.data.forEach(activity => {
+        activities.forEach(activity => {
 
             activityCardContainer.insertAdjacentHTML('beforeend', activityTmpl(activity))
             
@@ -77,7 +77,7 @@ export const renderActivities = () => {
 
         btn.addEventListener('click', (e) => {
             const activityID = e.target.id
-            const activityToAdd = activities.data.find(activity => activity._id == activityID)
+            const activityToAdd = activities.find(activity => activity._id == activityID)
 
             const exist = likedArray.find(liked => liked._id == activityID)
 
