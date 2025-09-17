@@ -3,7 +3,11 @@ import { GetData } from "../fetch.js";
 //
 
 // define variables
-const DATA_stays = await GetData("assets/data/stays.json");
+const DATA_stays = await GetData(
+  "https://glamping-rqu9j.ondigitalocean.app/stays/",
+  "data"
+);
+// "assets/data/stays.json"
 const section = document.querySelector("#stays");
 const cards = section.querySelector(".cards");
 //
