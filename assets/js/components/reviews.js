@@ -3,36 +3,33 @@ import { GetData } from "../fetch.js";
 //
 
 // define variables
-const DATA_stays = await GetData(
+const DATA_reviews = await GetData(
   "https://glamping-rqu9j.ondigitalocean.app/reviews/",
   "data"
 );
-const ELMT_reviews = document.querySelector("#review");
+const ELMT_reviews = document.querySelector("#reviews");
 //
 
 // set up HTML templates
-const TMPL_stay_card = (data) => {
+const TMPL_review = (data) => {
   return `
-<div class="card">
+<div class="review">
     <div class="title">
-        <h1>${data.title}</h1>
-        <p>${data.numberOfPersons} personer</p>
-        <p>${data.price},-</p>
+        <p>${data.name}, ${data.age} år</p>
+        <p>Har været på Romantisk Geteaway</p>
     </div>
-    <img src="${data.image}" alt="" />
-    <a href="">LÆS MERE</a>
+    <p>${data.review}</p>
 </div>
 `;
 };
 //
 
 // export code
-export const Stays = () => {
+export const Reviews = () => {
   // check if page is "index"
   if (ELMT_reviews) {
-    const cards = ELMT_stay_list.querySelector(".cards");
-    DATA_stays.forEach((item) => {
-      cards.insertAdjacentHTML("beforeend", TMPL_stay_card(item));
+    DATA_reviews.forEach((item) => {
+      ELMT_reviews.insertAdjacentHTML("beforeend", TMPL_review(item));
     });
   }
   //
