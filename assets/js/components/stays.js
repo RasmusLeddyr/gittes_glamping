@@ -21,11 +21,21 @@ const TMPL_stay_card = (data) => {
         <p>${data.price},-</p>
     </div>
     <img src="${data.image}" alt="" />
-    <a href="">LÆS MERE</a>
+    <a href="ophold-single.html?id=${encodeURIComponent(data._id)}">LÆS MERE</a>
 </div>
 `;
 };
-const TMPL_stay_page = (data) => {};
+const TMPL_stay_page = (data) => {
+  const includes = data.includes.map((item) => `<li>${item}</li>`).join("");
+  return `
+<h1>${data.title}</h1>
+<p>${data.description}</p>
+<p>Med i pakken, er der inkluderet:</p>
+<ul class="includes">${includes}</ul>
+<p>price</p>
+<button>BOOK NU</button>
+`;
+};
 //
 
 // export code
@@ -41,6 +51,7 @@ export const Stays = () => {
 
   // check if page is "ophold-single"
   if (ELMT_stay_page) {
+    console.log("yes");
   }
   //
 };
