@@ -2,6 +2,8 @@
 
 import { renderActivities } from "./components/activities.js";
 renderActivities();
+import { likedListRender } from "./components/myList.js";
+likedListRender()
 
 import { Stays } from "./components/stays.js";
 Stays();

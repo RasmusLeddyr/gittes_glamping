@@ -18,7 +18,7 @@ const activityHeroTmpl = () => {
                   </div>`;
 };
 
-const activityTmpl = (activity) => {
+export const activityTmpl = (activity) => {
   return `
     <div class="activity-card">
         <div class="activity-title">${activity.title}</div>
@@ -77,7 +77,7 @@ export const renderActivities = () => {
         );
 
         const exist = likedArray.find((liked) => liked._id == activityID);
-
+        
         if (!exist) {
           likedArray.push(activityToAdd);
           localStorage.setItem("likedList", JSON.stringify(likedArray));

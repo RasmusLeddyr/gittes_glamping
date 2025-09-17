@@ -1,0 +1,6 @@
+.liked-list-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+}
