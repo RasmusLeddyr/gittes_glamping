@@ -1,12 +1,33 @@
 const likedListContainer = document.querySelector('.liked-list-container')
+const likedHeroContainer = document.querySelector('.liked-hero-container')
+const storedLikes = localStorage.getItem("likedList");
+const likedList = storedLikes ? JSON.parse(storedLikes) : [];
+
+
 import { activityTmpl } from "./activities.js"
 
+const likedHeroTmpl = () => {
+  return ` <img src="assets/img/heros/min-liste.jpg" alt="">
+                  <h1>Min liste</h1>
+                  <div class="liked-hero-desc">
+                      <h2>Antal aktiviteter tilføjet: <br> <span class="added-counter">0</span></h2>
+                      <p>Herunder kan du se listen over de aktiviteter som du har føjet til din liste</p>
+                  </div>`; }
 
+
+export const renderLikedHero = () => {
+    if (likedHeroContainer) {
+        likedHeroContainer.innerHTML = ""
+        likedHeroContainer.insertAdjacentHTML("beforeend", likedHeroTmpl());
+
+        const addedCounter = document.querySelector('.added-counter')
+
+        addedCounter.innerHTML = likedList.length
+    }
+
+}
 
 export const likedListRender = () => {
-
-    const storedLikes = localStorage.getItem('likedList')
-    const likedList = storedLikes ? JSON.parse(storedLikes) : []
     
     if (likedListContainer) {
 
@@ -38,9 +59,11 @@ export const likedListRender = () => {
                 localStorage.setItem("likedList", JSON.stringify(likedList));
 
                 likedListRender()
+                renderLikedHero()
 
                 if (likedList.length == 0) {
                   localStorage.removeItem("likedList");
+                  renderCounter()
                 }
               });
             });

@@ -85,6 +85,7 @@ export const renderActivities = () => {
         } else {
           console.log("Aktiviteten findes allerede i like-listen");
           btn.classList.toggle("liked");
+          
           likedArray.splice(activityToAdd, 1);
           if (likedArray.length == 0) {
             localStorage.removeItem("likedList");
