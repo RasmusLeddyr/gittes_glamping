@@ -16,7 +16,7 @@ const TMPL_review = (data) => {
 <div class="review">
     <div class="title">
         <p>${data.name}, ${data.age} år</p>
-        <p>Har været på Romantisk Geteaway</p>
+        <p>Har været på ${data.stay}</p>
     </div>
     <p>${data.review}</p>
 </div>
