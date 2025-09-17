@@ -11,4 +11,6 @@ import { Header } from "./components/header-container.js";
 Header();
  */
 
+import { Stays } from "./components/Stays.js";
+Stays();
 //
