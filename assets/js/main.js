@@ -1,16 +1,14 @@
 // import and run component functions
 
-import { renderActivities } from "./components/activities.js"
-renderActivities()
+import { renderActivities } from "./components/activities.js";
+renderActivities();
 
-/*  Eksempel:
-import { Gallery } from "./components/gallery.js";
-Gallery();
-
-import { Header } from "./components/header-container.js";
-Header();
- */
-
-import { Stays } from "./components/Stays.js";
+import { Stays } from "./components/stays.js";
 Stays();
-//
+
+import { initTopbar } from "./components/topbar.js";
+initTopbar();
+import { initSlider } from "./components/slider.js";
+initSlider();
+import { initFooter } from "./components/footer.js";
+initFooter();

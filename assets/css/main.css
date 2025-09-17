@@ -1,3 +1,6 @@
-@import url(buttons.css); /* Brug .btn class på standardknapper med farve, .btn-clear på gennemsigtige knapper */
-@import url(activity-card.css);
-@import url(likeButton.css);
+@import url("activity-card.css");
+@import url("likeButton.css");
+@import url("buttons.css");
+@import url("footer.css");
+@import url("topbar.css");
+@import url("slider.css");
