@@ -7,7 +7,8 @@ const DATA_stays = await GetData(
   "https://glamping-rqu9j.ondigitalocean.app/stays/",
   "data"
 );
-const ELMT_stays = document.querySelector("#stays");
+const ELMT_stay_list = document.querySelector("#stays");
+const ELMT_stay_page = document.querySelector("#stay_page");
 //
 
 // set up HTML templates
@@ -29,11 +30,18 @@ const TMPL_stay_page = (data) => {};
 
 // export code
 export const Stays = () => {
-  if (ELMT_stays) {
-    const cards = ELMT_stays.querySelector(".cards");
+  // check if page is "ophold"
+  if (ELMT_stay_list) {
+    const cards = ELMT_stay_list.querySelector(".cards");
     DATA_stays.forEach((item) => {
       cards.insertAdjacentHTML("beforeend", TMPL_stay_card(item));
     });
   }
+  //
+
+  // check if page is "ophold-single"
+  if (ELMT_stay_page) {
+  }
+  //
 };
 //
