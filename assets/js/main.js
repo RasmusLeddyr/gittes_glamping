@@ -8,6 +8,9 @@ likedListRender()
 import { Stays } from "./components/stays.js";
 Stays();
 
+import { Reviews } from "./components/reviews.js";
+Reviews();
+
 import { initTopbar } from "./components/topbar.js";
 initTopbar();
 import { initSlider } from "./components/slider.js";
