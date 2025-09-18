@@ -42,16 +42,39 @@ const TMPL_stay_page = (data) => {
 export const Stays = () => {
   // check if page is "ophold"
   if (ELMT_stay_list) {
+    // print cards using TMPL_stay_card
     const cards = ELMT_stay_list.querySelector(".cards");
     DATA_stays.forEach((item) => {
       cards.insertAdjacentHTML("beforeend", TMPL_stay_card(item));
     });
+    //
   }
   //
 
   // check if page is "ophold-single"
   if (ELMT_stay_page) {
-    console.log("yes");
+    // find id from url
+    const params = new URLSearchParams(window.location.search);
+    //
+
+    // if id does not exist, print error
+    const id = params.get("id");
+    if (!id) {
+      ELMT_stay_page.innerHTML = "<h1>URL did not provide ID</h1>";
+      return;
+    }
+    //
+
+    // if select does not exist, print error
+    const select = DATA_stays.find((item) => String(item._id) === String(id));
+    if (!select) {
+      ELMT_stay_page.innerHTML = "<h1>Could not find item matching ID</h1>";
+    }
+    //
+
+    // print single card using TMPL_stay_page
+    ELMT_stay_page.insertAdjacentHTML("beforeend", TMPL_stay_page(select));
+    //
   }
   //
 };
