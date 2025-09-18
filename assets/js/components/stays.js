@@ -1,5 +1,6 @@
 // import functions
 import { GetData } from "../fetch.js";
+import { Search } from "./search.js";
 //
 
 // define variables
@@ -44,8 +45,13 @@ export const Stays = () => {
   if (ELMT_stay_list) {
     // print cards using TMPL_stay_card
     const cards = ELMT_stay_list.querySelector(".cards");
-    DATA_stays.forEach((item) => {
-      cards.insertAdjacentHTML("beforeend", TMPL_stay_card(item));
+    Search({
+      bar: "#stays",
+      list: DATA_stays,
+      output: cards,
+      template: TMPL_stay_card,
+      fields: ["title"],
+      placeholder: "Søg ophold.",
     });
     //
   }
