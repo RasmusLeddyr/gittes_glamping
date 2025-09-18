@@ -1,0 +1,84 @@
+/* ===========================
+   Footer base styles
+   =========================== */
+.Footer {
+  background: #2f4f53;   /* mørkegrøn fra XD */
+  width: 100vw;          /* fylder hele skærmbredden */
+  margin: 0;             /* ingen margin */
+  padding: 2rem 0;       /* kun top/bund padding */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Brug samme font som hero og burger */
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nulstil body margin (ellers får du hvid kant rundt om siden) */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Social icons as white outline squares */
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.footer-icon img {
+  width: 54px;   /* størrelsen af ikonerne inkl. outline */
+  height: 54px;
+  display: block;
+  filter: invert(100%);  /* gør sorte SVGs hvide */
+}
+
+.footer-icon:hover {
+  transform: scale(1.05);
+}
+
+/* Brand/logo sektion */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+/* Gør kun Gittes Glamping logoet hvidt */
+.footer-logo {
+  width: 32px;      
+  height: 32px;
+  display: block;
+  filter: brightness(0) invert(1); /* gør logoet hvidt */
+}
+
+.footer-text {
+  font-size: 1.6rem; /* lidt større for bedre læsbarhed */
+  font-weight: 400;
+  color: #fff;
+
+  font-family: inherit; /* arver fra .Footer */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

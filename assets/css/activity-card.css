@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.activity-container {
+  background-color: #cfd3ce;
+  padding-bottom: 300px;
+}
+
+.activity-hero-desc {
+  z-index: 2;
+  border-radius: 60px 0 60px 0;
+  background-color: #34626c;
+  position: absolute;
+  top: 50%;
+  padding-bottom: 60px;
+  width: 100%;
+}
+
+.activity-hero-desc h2 {
+  color: white;
+  font-family: "Zen Loop";
+  font-weight: 200;
+  font-size: 60px;
+  text-align: center;
+  padding: 80px 50px;
+  padding-bottom: 40px;
+}
+
+.activity-hero-desc p {
+  color: white;
+  text-align: center;
+  font-family: "Nanum Gothic";
+  font-size: 14px;
+  padding: 0 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.activity-hero img {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  object-fit: cover;
+  object-position: 71%;
+  z-index: 0;
+  margin-bottom: 600px;
+}
+
+.activity-hero h1 {
+  position: absolute;
+  background-color: #34626c80;
+  color: white;
+  font-family: "Zen Loop";
+  top: 0;
+  right: 0;
+  bottom: 20%;
+  left: 0;
+  display: grid;
+  place-content: start center;
+  z-index: 1;
+  padding-top: 150px;
+  font-size: 80px;
+  font-weight: 200;
+}
+
+.activity-card-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+}
+
+.activity-card {
+  position: relative;
+  height: 250px;
+  background-color: #cfd3ce;
+}
+
+.activity-card.show {
+  height: 550px;
+}
+
+.activity-title {
+  background-color: #c6b498;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 60px;
+  font-family: "Zen Loop";
+  font-weight: 200;
+  color: white;
+  padding: 25px 10px;
+  border-radius: 60px 0 60px 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: -80px;
+}
+
+.activity-img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.activity-info {
+  background-color: #34626c;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 60px 0 60px 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 165px;
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 30px;
+}
+
+.activity-day,
+.activity-time {
+  color: white;
+  font-family: "Zen Loop";
+  font-size: 30px;
+  padding-left: 20px;
+}
+
+.activity-readmore {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px 0 30px 0;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.activity-readmore-text {
+  display: none;
+}
+
+.activity-readmore-text.show {
+  display: block;
+  color: white;
+  font-family: "Nanum Gothic";
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.like-btn {
+  position: absolute;
+  top: 200px;
+  right: 10%;
+  border-radius: 10px 0 10px 0;
+  width: 45px;
+  height: 42px;
+  padding: 8px 12px;
+  background-color: #839B97;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.like-btn.liked {
+  fill: white;
+}

@@ -1,0 +1,173 @@
+/* ===== Import font ===== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
+
+/* ===== Hero Slider ===== */
+.Slider {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* Standard: undersider */
+  overflow: hidden;
+}
+
+.Slider.home { /* Forside: større hero */
+  height: 80vh;
+}
+
+.Slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+.Slider img.active { opacity: 1; }
+
+/* ===== Tint overlay (blåligt lag over billedet) ===== */
+/* (Her tinter du billedet) */
+.Slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 79, 83, 0.70) 0%,
+    rgba(47, 79, 83, 0.58) 40%,
+    rgba(47, 79, 83, 0.48) 100%
+  );
+  z-index: 1; /* over billedet, under tekst */  
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+/* Lidt mørkere tint på små skærme for læsbarhed */
+@media (max-width: 600px) {
+  .Slider::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(47, 79, 83, 0.78) 0%,
+      rgba(47, 79, 83, 0.65) 45%,
+      rgba(47, 79, 83, 0.55) 100%
+    );
+  }
+}
+
+/* ===== Overlay – fælles (tekstlag) ===== */
+.slider-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2; /* teksten skal ligge over tinten */
+  display: flex;
+  pointer-events: none;
+}
+
+/* ===== UNDERSIDER: centreret titel ===== */
+.Slider:not(.home) .slider-overlay {
+  align-items: center;       /* lodret center */
+  justify-content: center;   /* vandret center */
+  padding: 0;
+  text-align: center;
+}
+
+.Slider:not(.home) .hero-title {
+  margin: 0;
+  color: #fff;
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(3rem, 8vh, 6rem);
+  line-height: 1.1;
+  letter-spacing: .5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+
+  /* Optisk justering */
+  transform: translateX(6px);
+
+  /* Lettere udtryk */
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== FORSIDE: centrering, logo, undertitel og CTA ===== */
+.Slider.home .slider-overlay {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.Slider.home .hero-logo {
+  width: 72px;
+  height: auto;
+  filter: invert(100%);
+  pointer-events: none;
+}
+
+.Slider.home .hero-subtitle {
+  margin: .25rem 0 0;
+  color: #fff;
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(1.6rem, 4vh, 3rem);
+
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Slider.home .hero-title {
+  color: #fff;
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(3.5rem, 9vh, 7rem);
+  line-height: 1.1;
+  letter-spacing: .5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  transform: translateX(6px);
+
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Slider.home .cta-btn {
+  margin-top: 1rem;
+  padding: .8rem 1.6rem;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: background .2s ease;
+
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(1.4rem, 3.2vh, 2.4rem);
+
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Slider.home .cta-btn:hover {
+  background: rgba(255, 255, 255, .15);
+}
+
+/* ===== Overlap af næste sektion (valgfri effekt) ===== */
+.Slider + .overlap-section {
+  position: relative;
+  z-index: 3;
+  margin-top: -32px;
+  padding: 1.5rem 1rem 2rem;
+  background: #3e6668;
+  color: #f4f7f7;
+  border-top-left-radius: 48px;
+}
+
+@media (min-width: 600px) {
+  .Slider + .overlap-section {
+    margin-top: -48px;
+    padding: 2rem 1.25rem 2.5rem;
+    border-top-left-radius: 64px;
+  }
+}

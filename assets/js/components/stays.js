@@ -7,33 +7,41 @@ const DATA_stays = await GetData(
   "https://glamping-rqu9j.ondigitalocean.app/stays/",
   "data"
 );
-// "assets/data/stays.json"
-const section = document.querySelector("#stays");
-const cards = section.querySelector(".cards");
+const ELMT_stay_list = document.querySelector("#stays");
+const ELMT_stay_page = document.querySelector("#stay_page");
 //
 
 // set up HTML templates
-const TMPL_stay_card = (item) => {
+const TMPL_stay_card = (data) => {
   return `
 <div class="card">
     <div class="title">
-        <h1>${item.title}</h1>
-        <p>${item.people}</p>
-        <p>${item.price}</p>
+        <h1>${data.title}</h1>
+        <p>${data.numberOfPersons} personer</p>
+        <p>${data.price},-</p>
     </div>
-    <img src="assets/img/ophold/${item.image}" alt="${item.alt}" />
+    <img src="${data.image}" alt="" />
     <a href="">LÆS MERE</a>
 </div>
 `;
 };
+const TMPL_stay_page = (data) => {};
 //
 
 // export code
 export const Stays = () => {
-  if (section && cards) {
+  // check if page is "ophold"
+  if (ELMT_stay_list) {
+    const cards = ELMT_stay_list.querySelector(".cards");
     DATA_stays.forEach((item) => {
       cards.insertAdjacentHTML("beforeend", TMPL_stay_card(item));
     });
   }
+  //
+
+  // check if page is "ophold-single"
+  if (ELMT_stay_page) {
+  }
+  //
 };
 //
