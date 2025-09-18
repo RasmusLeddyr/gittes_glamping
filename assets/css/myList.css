@@ -3,6 +3,17 @@
   display: flex;
   flex-direction: column;
   gap: 300px;
+  padding-bottom: 300px;
+}
+
+.likes-container {
+  background-color: #cfd3ce;
+}
+
+.empty-text {
+  font-family: "Zen Loop";
+  font-size: 32px;
+  color: #34626c;
 }
 
 .liked-hero-desc {

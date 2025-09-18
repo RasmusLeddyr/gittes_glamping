@@ -27,7 +27,17 @@ export const renderLikedHero = () => {
 
 }
 
+const emptyListTmpl = () => {
+    return `<p class="empty-text">Du har ikke tilføjet nogle aktiviteter til din liste.</p>`
+}
+
+
+
 export const likedListRender = () => {
+
+    if (likedList.length == 0) {
+      likedListContainer.insertAdjacentHTML("beforeend", emptyListTmpl());
+    }
     
     if (likedListContainer) {
 
@@ -37,8 +47,24 @@ export const likedListRender = () => {
             likedListContainer.insertAdjacentHTML("beforeend", activityTmpl(item))
             
         });
+        
     };
+    
+    const readMoreButtons = document.querySelectorAll(".activity-readmore");
 
+    readMoreButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const text = btn.nextElementSibling;
+        text.classList.toggle("show");
+        btn.parentElement.parentElement.classList.toggle("show");
+
+        if (text.classList.contains("show")) {
+          btn.textContent = "Læs Mindre";
+        } else {
+          btn.textContent = "Læs Mere";
+        }
+      });
+    });
     
     const listLikes = () => {
 
