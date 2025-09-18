@@ -1,104 +1,79 @@
-const likedListContainer = document.querySelector('.liked-list-container')
-const likedHeroContainer = document.querySelector('.liked-hero-container')
-const storedLikes = localStorage.getItem("likedList");
-const likedList = storedLikes ? JSON.parse(storedLikes) : [];
+import { activityTmpl } from "./activities.js";
 
+const likedListContainer = document.querySelector(".liked-list-container");
+const likedHeroContainer = document.querySelector(".liked-hero-container");
 
-import { activityTmpl } from "./activities.js"
+const likedHeroTmpl = () => `
+  <img src="assets/img/heros/min-liste.jpg" alt="">
+  <h1>Min liste</h1>
+  <div class="liked-hero-desc">
+      <h2>Antal aktiviteter tilføjet: <br>
+          <span class="added-counter">0</span>
+      </h2>
+      <p>Herunder kan du se listen over de aktiviteter som du har føjet til din liste</p>
+  </div>
+`;
 
-const likedHeroTmpl = () => {
-  return ` <img src="assets/img/heros/min-liste.jpg" alt="">
-                  <h1>Min liste</h1>
-                  <div class="liked-hero-desc">
-                      <h2>Antal aktiviteter tilføjet: <br> <span class="added-counter">0</span></h2>
-                      <p>Herunder kan du se listen over de aktiviteter som du har føjet til din liste</p>
-                  </div>`; }
-
+const emptyListTmpl = () =>
+  `<p class="empty-text">Du har ikke tilføjet nogle aktiviteter til din liste.</p>`;
 
 export const renderLikedHero = () => {
-    if (likedHeroContainer) {
-        likedHeroContainer.innerHTML = ""
-        likedHeroContainer.insertAdjacentHTML("beforeend", likedHeroTmpl());
+  if (!likedHeroContainer) return;
 
-        const addedCounter = document.querySelector('.added-counter')
+  const storedLikes = localStorage.getItem("likedList");
+  const likedList = storedLikes ? JSON.parse(storedLikes) : [];
 
-        addedCounter.innerHTML = likedList.length
-    }
+  likedHeroContainer.innerHTML = likedHeroTmpl();
 
-}
-
-const emptyListTmpl = () => {
-    return `<p class="empty-text">Du har ikke tilføjet nogle aktiviteter til din liste.</p>`
-}
-
-
+  const addedCounter = document.querySelector(".added-counter");
+  if (addedCounter) addedCounter.textContent = likedList.length;
+};
 
 export const likedListRender = () => {
+  if (!likedListContainer) return;
 
-    if (likedList.length == 0) {
-      likedListContainer.insertAdjacentHTML("beforeend", emptyListTmpl());
-    }
-    
-    if (likedListContainer) {
+  const storedLikes = localStorage.getItem("likedList");
+  const likedList = storedLikes ? JSON.parse(storedLikes) : [];
 
-        likedListContainer.innerHTML = ""
-        likedList.forEach(item => {
+  likedListContainer.innerHTML = "";
 
-            likedListContainer.insertAdjacentHTML("beforeend", activityTmpl(item))
-            
-        });
-        
-    };
-    
-    const readMoreButtons = document.querySelectorAll(".activity-readmore");
+  if (likedList.length === 0) {
+    likedListContainer.insertAdjacentHTML("beforeend", emptyListTmpl());
+    return;
+  }
 
-    readMoreButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const text = btn.nextElementSibling;
-        text.classList.toggle("show");
-        btn.parentElement.parentElement.classList.toggle("show");
+  likedList.forEach((item) => {
+    likedListContainer.insertAdjacentHTML("beforeend", activityTmpl(item));
+  });
 
-        if (text.classList.contains("show")) {
-          btn.textContent = "Læs Mindre";
-        } else {
-          btn.textContent = "Læs Mere";
-        }
-      });
+  // Read more
+  document.querySelectorAll(".activity-readmore").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const text = btn.nextElementSibling;
+      text.classList.toggle("show");
+      btn.parentElement.parentElement.classList.toggle("show");
+      btn.textContent = text.classList.contains("show")
+        ? "Læs Mindre"
+        : "Læs Mere";
     });
-    
-    const listLikes = () => {
+  });
 
-        if (likedListContainer) {
-            const likeBtns = document.querySelectorAll(".like-btn");
+  // Like knapper
+  document.querySelectorAll(".like-btn").forEach((btn) => {
+    btn.classList.add("liked");
+    btn.addEventListener("click", (e) => {
+      const likedID = e.currentTarget.id;
+      const index = likedList.findIndex((act) => act._id == likedID);
+      if (index > -1) likedList.splice(index, 1);
 
-            likeBtns.forEach((btn) => {
-              btn.classList.add("liked");
+      if (likedList.length > 0) {
+        localStorage.setItem("likedList", JSON.stringify(likedList));
+      } else {
+        localStorage.removeItem("likedList");
+      }
 
-              btn.addEventListener("click", (e) => {
-                let likedID = e.currentTarget.id;
-                const activityToRemove = likedList.find(
-                  (activity) => activity._id == likedID
-                );
-
-                likedList.splice(activityToRemove, 1);
-
-                localStorage.setItem("likedList", JSON.stringify(likedList));
-
-                likedListRender()
-                renderLikedHero()
-
-                if (likedList.length == 0) {
-                  localStorage.removeItem("likedList");
-                  renderCounter()
-                }
-              });
-            });
-        }
-      
-
-    }
-    
-    listLikes()
-
-}
-
+      likedListRender();
+      renderLikedHero();
+    });
+  });
+};
