@@ -54,12 +54,6 @@ export const renderActivities = () => {
       fields: ["title"],
       placeholder: "Søg aktivitet.",
     });
-    activities.forEach((activity) => {
-      /* activityCardContainer.insertAdjacentHTML(
-        "beforeend",
-        activityTmpl(activity)
-      ); */
-    });
   }
 
   const readMoreButtons = document.querySelectorAll(".activity-readmore");
