@@ -1,4 +1,5 @@
 import { GetData } from "../fetch.js";
+import { Search } from "./search.js";
 const activityHero = document.querySelector(".activity-hero");
 const activityCardContainer = document.querySelector(
   ".activity-card-container"
@@ -10,12 +11,14 @@ const activities = await GetData(
 );
 
 const activityHeroTmpl = () => {
-  return ` <img src="assets/img/heros/aktiviteter.jpg" alt="">
-                  <h1>Aktiviteter</h1>
-                  <div class="activity-hero-desc">
-                      <h2>Ingen skal kede sig hos Gitte</h2>
-                      <p>Glamping er mere end blot en indkvartering – det er en mulighed for at fordybe dig i naturen og skabe minder, der varer livet ud. Uanset om du foretrækker en eventyrlig kanotur, en oplysende naturvandring, hjertevarm samvær omkring bålet, smagfulde oplevelser som vinsmagning eller morgenyoga, der giver dig en chancen for at finde indre ro og balance i naturens skød - vil vi hos Gittes Glamping imødekomme dine ønsker.</p>
-                  </div>`;
+  return `
+<img src="assets/img/heros/aktiviteter.jpg" alt="">
+<h1>Aktiviteter</h1>
+<div class="activity-hero-desc">
+  <h2>Ingen skal kede sig hos Gitte</h2>
+  <p>Glamping er mere end blot en indkvartering – det er en mulighed for at fordybe dig i naturen og skabe minder, der varer livet ud. Uanset om du foretrækker en eventyrlig kanotur, en oplysende naturvandring, hjertevarm samvær omkring bålet, smagfulde oplevelser som vinsmagning eller morgenyoga, der giver dig en chancen for at finde indre ro og balance i naturens skød - vil vi hos Gittes Glamping imødekomme dine ønsker.</p>
+</div>
+`;
 };
 
 export const activityTmpl = (activity) => {
@@ -42,11 +45,20 @@ export const renderActivities = () => {
   }
 
   if (activityCardContainer) {
+    Search({
+      bar_parent: activityCardContainer,
+      bar_placement: "beforebegin",
+      list: activities,
+      output: activityCardContainer,
+      template: activityTmpl,
+      fields: ["title"],
+      placeholder: "Søg aktivitet.",
+    });
     activities.forEach((activity) => {
-      activityCardContainer.insertAdjacentHTML(
+      /* activityCardContainer.insertAdjacentHTML(
         "beforeend",
         activityTmpl(activity)
-      );
+      ); */
     });
   }
 
@@ -77,7 +89,7 @@ export const renderActivities = () => {
         );
 
         const exist = likedArray.find((liked) => liked._id == activityID);
-        
+
         if (!exist) {
           likedArray.push(activityToAdd);
           localStorage.setItem("likedList", JSON.stringify(likedArray));
@@ -85,7 +97,7 @@ export const renderActivities = () => {
         } else {
           console.log("Aktiviteten findes allerede i like-listen");
           btn.classList.toggle("liked");
-          
+
           likedArray.splice(activityToAdd, 1);
           if (likedArray.length == 0) {
             localStorage.removeItem("likedList");
