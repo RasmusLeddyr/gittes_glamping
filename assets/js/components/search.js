@@ -1,14 +1,16 @@
 export function Search(data) {
-  const bar = document.querySelector(data.bar);
+  const bar_parent = data.bar_parent;
+  const bar_placement = data.bar_placement;
   const output = data.output;
   const fields = data.fields;
   const placeholder = data.placeholder;
 
-  bar.insertAdjacentHTML(
-    "afterbegin",
-    `<input type="search" class="search_input" placeholder="${placeholder}">`
-  );
-  const input = bar.querySelector(".search_input");
+  const input = document.createElement("input");
+  input.type = "search";
+  input.className = "search_input";
+  input.placeholder = placeholder;
+
+  bar_parent.insertAdjacentElement(bar_placement, input);
 
   function Render(list) {
     output.innerHTML = "";
