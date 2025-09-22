@@ -19,3 +19,9 @@ import { initSlider } from "./components/slider.js";
 initSlider();
 import { initFooter } from "./components/footer.js";
 initFooter();
+
+import { initContactForm } from "./components/contactform.js";
+
+if (document.body.id === "kontakt") {
+  initContactForm();
+}

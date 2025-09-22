@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap");
+
+/* --- Container for kontakt siden --- */
+body#kontakt main {
+  position: relative;
+  background-color: #34626C; /* kontaktfarven */
+  padding: 60px 20px;
+  color: white;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+/* BUE øverst venstre hjørne */
+body#kontakt main::before {
+  content: "";
+  position: absolute;
+  top: -56px;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  background: #34626C; /* samme farve som baggrunden */
+  border-top-left-radius: 60px;
+  pointer-events: none;
+}
+
+/* --- Intro boks --- */
+.contact-intro {
+  background-color: #34626C; /* samme farve */
+  padding: 20px;
+  border-radius: 60px 0 60px 0;
+  margin-bottom: 30px;
+}
+
+.contact-intro h2 {
+  font-family: "Zen Loop", cursive;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #b9c6c4;
+  text-align: center;
+}
+
+.contact-intro p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  color: white;
+}
+
+/* --- Formular --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form label {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #b9c6c4;
+  background: transparent;
+  color: white;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #b9c6c4;
+}
+
+/* --- Knap --- */
+.contact-form button {
+  align-self: center;
+  margin-top: 20px;
+}
+
+.contact-form button.btn {
+  border-radius: 50px 0 50px 0;
+  padding: 20px 60px;
+  color: white;
+  border: none;
+  background-color: #839B97;
+  font-family: "Zen Loop";
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Kontakt: gør select-listen læsbar */
+body#kontakt .contact-form select {
+  color: #fff;                 /* tekst i det lukkede felt */
+  background: transparent;
+  appearance: none;
+}
+
+/* Selve dropdown-listen (når den er åben) */
+body#kontakt .contact-form select option {
+  background: #ffffff;         /* lys baggrund i listen */
+  color: #0f2b2f;              /* mørk tekst */
+}
+
+/* Markerede/valgte optioner i listen */
+body#kontakt .contact-form select option:checked,
+body#kontakt .contact-form select option:focus {
+  background: #eaf1f1;
+  color: #0f2b2f;
+}
