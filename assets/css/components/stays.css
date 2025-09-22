@@ -3,47 +3,76 @@
 }
 
 #stays .cards {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 229px;
+  padding-bottom: 142px;
+  padding-top: 98px;
 }
 
 #stays .card {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  overflow: visible;
   position: relative;
-  overflow: hidden;
 }
 
 #stays .card .title {
+  --ADAP_width: 340;
+  --ADAP_width_cut: 0;
+  align-items: center;
   background-color: #c6b497;
   border-radius: 66px 0px 66px 0px;
   color: white;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 17px 43px 22px 43px;
   filter: drop-shadow(0px 3px 15px #000029);
-  width: 100%;
-  --ADAP_width: 340;
-  --ADAP_width_cut: 0;
-
+  flex-direction: column;
+  font-family: "Zen Loop";
+  justify-content: center;
+  min-height: 174px;
   position: absolute;
+    text-align: center;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
+  transform: translateY(-50%);
+  width: 100%;
 }
+#stays .card .title h1 {
+    --ADAP_text: 60;
+    --ADAP_text_cut: 0.5;
+    font-weight: normal;
+}
+#stays .card .title p {
+    --ADAP_text: 30;
+    --ADAP_text_cut: 0.5;
+    font-weight: normal;
+}
+
 #stays .card img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  display: block;
-  width: 100%;
   --ADAP_width: 375;
   --ADAP_width_cut: 0;
+  aspect-ratio: 1/1;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  width: 100%;
 }
 
 #stays .card a {
+  --ADAP_text: 30;
+  --ADAP_text_cut: 0.5;
+  background-color: #839b97;
+  border-radius: 66px 0px 66px 0px;
+  bottom: 0;
+  color: white;
+  filter: drop-shadow(0px 3px 15px #000029);
+  font-family: "Zen Loop";
+  font-weight: normal;
+  max-width: 50%;
+  padding: 27px 25px;
+  position: absolute;
+  text-align: center;
+  transform: translateY(50%);
+  width: 100%;
 }
