@@ -8,8 +8,8 @@ const DATA_stays = await GetData(
   "https://glamping-rqu9j.ondigitalocean.app/stays/",
   "data"
 );
-const ELMT_stay_list = document.querySelector("#stays");
-const ELMT_stay_page = document.querySelector("#stay_page");
+const ELMT_stays = document.querySelector("#stays");
+const ELMT_stay_single = document.querySelector("#stay_page");
 //
 
 // set up HTML templates
@@ -26,7 +26,7 @@ const TMPL_stay_card = (data) => {
 </div>
 `;
 };
-const TMPL_stay_page = (data) => {
+const TMPL_stay_single = (data) => {
   const includes = data.includes.map((item) => `<li>${item}</li>`).join("");
   return `
 <h1>${data.title}</h1>
@@ -42,11 +42,11 @@ const TMPL_stay_page = (data) => {
 // export code
 export const Stays = () => {
   // check if page is "ophold"
-  if (ELMT_stay_list) {
+  if (ELMT_stays) {
     // print cards using TMPL_stay_card
-    const cards = ELMT_stay_list.querySelector(".cards");
+    const cards = ELMT_stays.querySelector(".cards");
     Search({
-      bar_parent: ELMT_stay_list,
+      bar_parent: ELMT_stays,
       bar_placement: "afterbegin",
       list: DATA_stays,
       output: cards,
@@ -59,7 +59,7 @@ export const Stays = () => {
   //
 
   // check if page is "ophold-single"
-  if (ELMT_stay_page) {
+  if (ELMT_stay_single) {
     // find id from url
     const params = new URLSearchParams(window.location.search);
     //
@@ -67,7 +67,7 @@ export const Stays = () => {
     // if id does not exist, print error
     const id = params.get("id");
     if (!id) {
-      ELMT_stay_page.innerHTML = "<h1>URL did not provide ID</h1>";
+      ELMT_stay_single.innerHTML = "<h1>URL did not provide ID</h1>";
       return;
     }
     //
@@ -75,12 +75,12 @@ export const Stays = () => {
     // if select does not exist, print error
     const select = DATA_stays.find((item) => String(item._id) === String(id));
     if (!select) {
-      ELMT_stay_page.innerHTML = "<h1>Could not find item matching ID</h1>";
+      ELMT_stay_single.innerHTML = "<h1>Could not find item matching ID</h1>";
     }
     //
 
-    // print single card using TMPL_stay_page
-    ELMT_stay_page.insertAdjacentHTML("beforeend", TMPL_stay_page(select));
+    // print single card using TMPL_stay_single
+    ELMT_stay_single.insertAdjacentHTML("beforeend", TMPL_stay_single(select));
     //
   }
   //
