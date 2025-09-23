@@ -28,6 +28,7 @@
   flex-direction: column;
   gap: 74px;
   margin-bottom: 120px;
+  color: #fff;
 }
 
 #reviews .review {
@@ -38,6 +39,7 @@
   filter: drop-shadow(0px 3px 15px #000029);
   padding: 30px 27px 52px 27px;
   width: 100%;
+  color: #fff;
 }
 #reviews .review .desc {
   --ADAP_text: 14px;
