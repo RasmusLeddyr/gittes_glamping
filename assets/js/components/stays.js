@@ -39,8 +39,38 @@ const TMPL_stay_single = (data) => {
 };
 //
 
+const Fetch = () => {
+  console.log("fetch function")
+  let title = ""
+  let image = ""
+  let error = ""
+    // find id from url
+    const params = new URLSearchParams(window.location.search);
+    //
+
+    // if id does not exist, print error
+    const id = params.get("id");
+    if (id) {
+      const select = DATA_stays.find((item) => String(item._id) === String(id));
+      if (select) {
+        title = select.title
+        image = select.image
+      } else {
+        error = "<h1>Could not find item matching ID</h1>";
+      }
+    } else {
+      error = "<h1>URL did not provide ID</h1>";
+    }
+
+    return [title, image, error];
+    // print single card using TMPL_stay_single
+    ELMT_stay_single.insertAdjacentHTML("beforeend", TMPL_stay_single(select));
+     return { title, image };
+    //
+}
+
 // export code
-export const Stays = () => {
+export async function Stays () {
   // check if page is "ophold"
   if (ELMT_stays) {
     // print cards using TMPL_stay_card
@@ -60,29 +90,13 @@ export const Stays = () => {
 
   // check if page is "ophold-single"
   if (ELMT_stay_single) {
-    // find id from url
-    const params = new URLSearchParams(window.location.search);
-    //
-
-    // if id does not exist, print error
-    const id = params.get("id");
-    if (!id) {
-      ELMT_stay_single.innerHTML = "<h1>URL did not provide ID</h1>";
-      return;
-    }
-    //
-
-    // if select does not exist, print error
-    const select = DATA_stays.find((item) => String(item._id) === String(id));
-    if (!select) {
-      ELMT_stay_single.innerHTML = "<h1>Could not find item matching ID</h1>";
-    }
-    //
-
-    // print single card using TMPL_stay_single
-    ELMT_stay_single.insertAdjacentHTML("beforeend", TMPL_stay_single(select));
-    //
+    const data = Fetch()
+    console.log(data)
   }
   //
 };
 //
+
+export function SingleStayData() {
+return Fetch()
+}

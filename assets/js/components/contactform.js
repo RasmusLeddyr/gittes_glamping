@@ -23,25 +23,36 @@ export function initContactForm() {
         </div>
 
         <form class="contact-form" novalidate>
-          <label class="sr-only" for="cf-name">Navn</label>
-          <input id="cf-name" name="name" type="text" placeholder="Navn" required minlength="2" autocomplete="name" />
+          <div class="field">
+            <label class="sr-only" for="cf-name">Navn</label>
+            <input id="cf-name" name="name" type="text" placeholder="Navn" required minlength="2" autocomplete="name" />
+            <small class="field-error" data-for="name" hidden></small>
+          </div>
 
-          <label class="sr-only" for="cf-email">Email</label>
-          <input id="cf-email" name="email" type="email" placeholder="Email" required autocomplete="email" />
+          <div class="field">
+            <label class="sr-only" for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" placeholder="Email" required autocomplete="email" />
+            <small class="field-error" data-for="email" hidden></small>
+          </div>
 
-          <label class="sr-only" for="cf-cat">Hvad drejer henvendelsen sig om?</label>
-          <select id="cf-cat" name="category" required>
-            <option value="">Hvad drejer henvendelsen sig om?</option>
-            <option value="booking">Booking</option>
-            <option value="spørgsmål">Generelt spørgsmål</option>
-            <option value="andet">Andet</option>
-          </select>
+          <div class="field">
+            <label class="sr-only" for="cf-cat">Hvad drejer henvendelsen sig om?</label>
+            <select id="cf-cat" name="category" required>
+              <option value="">Hvad drejer henvendelsen sig om?</option>
+              <option value="booking">Booking</option>
+              <option value="spørgsmål">Generelt spørgsmål</option>
+              <option value="andet">Andet</option>
+            </select>
+            <small class="field-error" data-for="category" hidden></small>
+          </div>
 
-          <label class="sr-only" for="cf-msg">Besked</label>
-          <textarea id="cf-msg" name="message" placeholder="Besked (Skriv datoer, hvis det drejer sig om booking)" required minlength="10"></textarea>
+          <div class="field">
+            <label class="sr-only" for="cf-msg">Besked</label>
+            <textarea id="cf-msg" name="message" placeholder="Besked (Skriv datoer, hvis det drejer sig om booking)" required minlength="10"></textarea>
+            <small class="field-error" data-for="message" hidden></small>
+          </div>
 
           <button type="submit" class="btn">INDSEND</button>
-
           <p class="contact-success" hidden>Tak! Din besked er sendt ✅</p>
         </form>
 
@@ -59,42 +70,107 @@ export function initContactForm() {
   const success = main.querySelector(".contact-success");
   const countEl = main.querySelector("#msg-count");
 
-  // helper: læs/skriv localStorage
+  // helpers til storage
   const readList = () => JSON.parse(localStorage.getItem("sentMessages") || "[]");
   const writeList = (arr) => localStorage.setItem("sentMessages", JSON.stringify(arr));
+  const updateCounter = () => { if (countEl) countEl.textContent = String(readList().length); };
+  updateCounter();
 
-  const updateCounter = () => {
-    const n = readList().length;
-    if (countEl) countEl.textContent = String(n);
+  // === Validering ===
+  const nameInput = form.querySelector('#cf-name');
+  const emailInput = form.querySelector('#cf-email');
+  const categorySel = form.querySelector('#cf-cat');
+  const messageTxt = form.querySelector('#cf-msg');
+
+  const getErrEl = (name) => form.querySelector(`.field-error[data-for="${name}"]`);
+  const showErr = (inputEl, msg, nameKey) => {
+    const err = getErrEl(nameKey);
+    if (!err) return;
+    if (msg) {
+      err.textContent = msg;
+      err.hidden = false;
+      inputEl.setAttribute('aria-invalid', 'true');
+      inputEl.classList.add('is-invalid');
+    } else {
+      err.hidden = true;
+      err.textContent = "";
+      inputEl.removeAttribute('aria-invalid');
+      inputEl.classList.remove('is-invalid');
+    }
   };
 
-  updateCounter(); // vis aktuel mængde ved load
+  const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ '\-]+$/; // bogstaver, mellemrum, bindestreg, apostrof
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validateField = (el) => {
+    if (el === nameInput) {
+      const v = el.value.trim();
+      if (!v) return "Skriv dit navn.";
+      if (v.length < 2) return "Navn skal være mindst 2 tegn.";
+      if (!namePattern.test(v)) return "Navn må kun indeholde bogstaver.";
+      return "";
+    }
+    if (el === emailInput) {
+      const v = el.value.trim();
+      if (!v) return "Skriv din email.";
+      if (!emailPattern.test(v)) return "Indtast en gyldig email (fx navn@domæne.dk).";
+      return "";
+    }
+    if (el === categorySel) {
+      if (!el.value) return "Vælg et emne for din henvendelse.";
+      return "";
+    }
+    if (el === messageTxt) {
+      const v = el.value.trim();
+      if (!v) return "Skriv en besked.";
+      if (v.length < 10) return "Beskeden skal være mindst 10 tegn.";
+      return "";
+    }
+    return "";
+  };
+
+  const fields = [
+    { el: nameInput, key: 'name' },
+    { el: emailInput, key: 'email' },
+    { el: categorySel, key: 'category' },
+    { el: messageTxt, key: 'message' },
+  ];
+
+  const validateAndPaint = (el, key) => {
+    const msg = validateField(el);
+    showErr(el, msg, key);
+    return msg === "";
+  };
+
+  // live validering
+  fields.forEach(({ el, key }) => {
+    ['input', 'blur', 'change'].forEach(evt =>
+      el.addEventListener(evt, () => validateAndPaint(el, key))
+    );
+  });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
+
+    // kør validering på alle felter
+    let firstInvalid = null;
+    fields.forEach(({ el, key }) => {
+      const ok = validateAndPaint(el, key);
+      if (!ok && !firstInvalid) firstInvalid = el;
+    });
+
+    if (firstInvalid) {
+      firstInvalid.focus();
       return;
     }
 
-    const fd = new FormData(form);
-    const name = (fd.get("name") || "").toString().trim();
-    const email = (fd.get("email") || "").toString().trim();
-    const categoryValue = (fd.get("category") || "").toString().trim();
-    const message = (fd.get("message") || "").toString().trim();
-
-    // Brug valgt option-tekst som "subject"/emne
-    const catSel = form.querySelector("#cf-cat");
-    let subject = "";
-    if (catSel && catSel instanceof HTMLSelectElement) {
-      subject = catSel.selectedOptions[0]?.textContent?.trim() || "";
-    }
-
+    // gem til “Mine beskeder”
+    const catText = categorySel.selectedOptions[0]?.textContent?.trim() || "";
     const entry = {
-      name,
-      email,
-      subject: subject || categoryValue || "Ingen emne",
-      message,
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      subject: catText || categorySel.value || "Ingen emne",
+      message: messageTxt.value.trim(),
       ts: Date.now(),
     };
 
@@ -105,5 +181,7 @@ export function initContactForm() {
     updateCounter();
     success.hidden = false;
     form.reset();
+    // ryd fejl-styling efter reset
+    fields.forEach(({ el, key }) => showErr(el, "", key));
   });
 }

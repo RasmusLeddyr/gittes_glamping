@@ -140,3 +140,47 @@ body#kontakt .msg-link:hover {
     justify-content: center;
   }
 }
+
+/* --- Felter grupperes så fejltekst kan ligge under --- */
+.contact-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Ugyldigt felt – diskret, men tydeligt på #34626C baggrund */
+.contact-form .is-invalid {
+  border-color: #ffb8b8 !important;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Fejltekst under feltet */
+.contact-form .field-error {
+  color: #ffe3e3;
+  font-size: 0.85rem;
+  line-height: 1.2;
+}
+
+/* Fokus-stil for bedre tilgængelighed */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: 2px solid rgba(255,255,255,0.35);
+  outline-offset: 1px;
+}
+
+/* Gør select mere læsbar, men behold jeres tema */
+body#kontakt .contact-form select {
+  color: #fff;
+  background: transparent;
+  appearance: none;
+}
+body#kontakt .contact-form select option {
+  background: #ffffff;
+  color: #0f2b2f;
+}
+body#kontakt .contact-form select option:checked,
+body#kontakt .contact-form select option:focus {
+  background: #eaf1f1;
+  color: #0f2b2f;
+}
