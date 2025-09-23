@@ -14,12 +14,18 @@ const ELMT_stay_single = document.querySelector("#stay_page");
 
 // set up HTML templates
 const TMPL_stay_card = (data) => {
+  let price_tag = "show"
+  let discount_tag = "hide"
+  if (data.discountInPercent > 0){
+    price_tag = "cross"
+    discount_tag = "show"
+  }
   return `
 <div class="card">
     <div class="title">
         <h1>${data.title}</h1>
         <p>${data.numberOfPersons} personer</p>
-        <p>${data.price},-</p>
+        <p><span class="${price_tag}">${data.price}</span><span class="${discount_tag}"> <span class="discount">${Math.round(data.price - (data.price * (data.discountInPercent / 100)))}</span> (${data.discountInPercent}%)</span>,-</p>
     </div>
     <img src="${data.image}" alt="" />
     <a href="ophold-single.html?id=${encodeURIComponent(data._id)}">LÆS MERE</a>

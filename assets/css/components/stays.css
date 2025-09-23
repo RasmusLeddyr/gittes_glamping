@@ -49,6 +49,17 @@
   font-weight: normal;
 }
 
+#stays .card .title .hide {
+  display: none;
+}
+#stays .card .title .cross {
+  text-decoration: line-through;
+  color: rgb(127, 127, 127);
+}
+#stays .card .title .discount {
+  font-weight: bold;
+}
+
 #stays .card img {
   --ADAP_width: 375;
   --ADAP_width_cut: 0;
