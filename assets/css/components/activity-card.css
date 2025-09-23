@@ -12,10 +12,10 @@
 
 .activity-hero-desc {
   z-index: 2;
-  border-radius: 60px 0 60px 0;
+  border-radius: 50px 0 50px 0;
   background-color: #34626c;
   position: absolute;
-  top: 50%;
+  top: 45%;
   padding-bottom: 60px;
   width: 100%;
 }
@@ -97,13 +97,23 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  top: -80px;
+  top: -65px;
+  text-align: center;
 }
 
 .activity-img {
   object-fit: cover;
   width: 100%;
   height: 200px;
+}
+.activity-img.s {
+  width: 90%;
+  margin-left: 5%;
+  height: 700px;
+}
+
+.activity-single-container {
+  height: 650px;
 }
 
 .activity-info {
@@ -122,12 +132,23 @@
   padding: 30px;
 }
 
+.activity-info.s{
+  top: 610px;
+}
+
 .activity-day,
 .activity-time {
   color: white;
   font-family: "Zen Loop";
   font-size: 30px;
   padding-left: 20px;
+}
+
+.activity-day.s, .activity-time.s {
+  color: white;
+  font-family: "Zen Loop";
+  font-size: 30px;
+  text-align: center;
 }
 
 .activity-readmore {
@@ -165,6 +186,47 @@
   z-index: 3;
 }
 
+.single-page-open {
+  position: absolute;
+  top: 200px;
+  right: 15%;
+  height: 42px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.single-page-open.btn {
+  padding: 0px;
+  border-radius: 20px 0 20px 0;
+  font-size: 28px;
+  background-color: #c6b498;
+} 
+
 .like-btn.liked {
   fill: white;
+}
+
+/* --- Aktivitet enkeltside: afstand under slider --- */
+body#aktivitet-single .activity-hero { 
+  display: none;               /* vi bruger den fælles Slider i stedet */
+}
+
+body#aktivitet-single .activity-container {
+  background: #cfd3ce;
+  padding-top: 24px;           /* lille buffer under slider */
+}
+
+body#aktivitet-single .activity-single-container {
+  width: min(1200px, 92%);
+  margin: 120px auto 0;        /* justér 100–160px efter behov */
+}
+
+body#aktivitet-single .activity-single-container .activity-card {
+  margin-top: 0;
+}
+
+@media (min-width: 900px) {
+  body#aktivitet-single .activity-single-container {
+    margin-top: 150px;
+  }
 }
