@@ -97,7 +97,7 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  top: -65px;
+  top: -95px;
   text-align: center;
 }
 
@@ -124,7 +124,7 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  top: 165px;
+  top: 170px;
 
   display: flex;
   flex-direction: column;
@@ -332,5 +332,23 @@ body#aktivitet-single .activity-single-container .activity-card {
 
   body#aktivitet-single .activity-single-container {
     margin-bottom: 0; /* ingen ekstra hul */
+  }
+}
+
+/* Tablet spacing (≈ 600–900px) — push the heart a bit further right from the button */
+@media (min-width: 600px) and (max-width: 900px) {
+  /* move the button a little more inwards */
+  .activity-card .single-page-open.btn {
+    right: 12%;       /* was 15% */
+    top: 180px;       /* keep aligned with heart */
+  }
+
+  /* move the heart towards the edge and give it a touch more size */
+  .activity-card .like-btn {
+    right: 6%;        /* was ~10% -> creates a bigger gap to the button */
+    top: 178px;
+    width: 38px;
+    height: 34px;
+    padding: 6px;
   }
 }
