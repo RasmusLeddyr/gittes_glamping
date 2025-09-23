@@ -1,4 +1,6 @@
 // assets/js/components/slider.js
+import { SingleStayData } from "./stays.js";
+const [stay_title, stay_image] = SingleStayData();
 
 // Hero-konfiguration pr. side (default titler + billeder)
 const HERO = {
@@ -10,7 +12,7 @@ const HERO = {
     ctaLink: 'kontakt.html'
   },
   ophold:        { imgs: ['assets/img/heros/ophold.jpg'],      title: 'Vores ophold' },
-  'ophold-single': { imgs: ['assets/img/heros/ophold.jpg'],    title: 'Ophold' }, // NY
+  'ophold-single': { imgs: [stay_image],    title: stay_title }, // NY
   kontakt:       { imgs: ['assets/img/heros/kontakt.jpg'],     title: 'Kontakt Gitte' },
   aktiviteter:   { imgs: ['assets/img/heros/aktiviteter.jpg'], title: 'Aktiviteter' },
   'aktivitet-single': { imgs: ['assets/img/heros/aktiviteter.jpg'], title: 'Aktivitet' }, // NY
