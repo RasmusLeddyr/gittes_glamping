@@ -7,16 +7,16 @@ const HERO = {
     title: 'Glamping',
     subtitle: 'Gittes',
     showLogo: true,
-    ctaLink: 'kontakt.html'     // "Book nu" sender til kontakt-siden
+    ctaLink: 'kontakt.html'
   },
-  ophold:      { imgs: ['assets/img/heros/ophold.jpg'],      title: 'Vores ophold' },
-  kontakt:     { imgs: ['assets/img/heros/kontakt.jpg'],     title: 'Kontakt Gitte' },
-  aktiviteter: { imgs: ['assets/img/heros/aktiviteter.jpg'], title: 'Aktiviteter' },
-  'min-liste': { imgs: ['assets/img/heros/min-liste.jpg'],   title: 'Min liste' },
-  gitte:       { imgs: ['assets/img/heros/gitte.jpg'],       title: 'Gitte' },
-
-  // ➕ NY: hero til "Mine beskeder" (bruger kontakt-billedet/stemning)
-  beskeder:    { imgs: ['assets/img/heros/kontakt.jpg'],     title: 'Mine beskeder' },
+  ophold:        { imgs: ['assets/img/heros/ophold.jpg'],      title: 'Vores ophold' },
+  'ophold-single': { imgs: ['assets/img/heros/ophold.jpg'],    title: 'Ophold' }, // NY
+  kontakt:       { imgs: ['assets/img/heros/kontakt.jpg'],     title: 'Kontakt Gitte' },
+  aktiviteter:   { imgs: ['assets/img/heros/aktiviteter.jpg'], title: 'Aktiviteter' },
+  'aktivitet-single': { imgs: ['assets/img/heros/aktiviteter.jpg'], title: 'Aktivitet' }, // NY
+  'min-liste':   { imgs: ['assets/img/heros/min-liste.jpg'],   title: 'Min liste' },
+  gitte:         { imgs: ['assets/img/heros/gitte.jpg'],       title: 'Gitte' },
+  beskeder:      { imgs: ['assets/img/heros/kontakt.jpg'],     title: 'Mine beskeder' },
 };
 
 // fallback hvis body-id mangler
