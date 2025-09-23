@@ -3,7 +3,6 @@ function buildTopbar() {
   const mount = document.querySelector('.Topbar');
   if (!mount) return;
 
-  // Logo, burger og menu direkte inde i .Topbar
   mount.innerHTML = `
     <a class="topbar-logo" href="index.html" aria-label="Gå til forside">
       <img src="assets/img/logo/logo.png" alt="Gittes Glamping" class="topbar-logo__img">
@@ -19,6 +18,7 @@ function buildTopbar() {
       <a href="kontakt.html">Kontakt</a>
       <a href="aktiviteter.html">Aktiviteter</a>
       <a href="liste.html">Min Liste</a>
+      <a href="mine-beskeder.html">Mine beskeder</a> <!-- ⭐ NYT -->
     </nav>
   `;
 
@@ -40,7 +40,6 @@ function buildTopbar() {
     menu.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
 
-    // fokus ind i menuen
     const focusables = getFocusable();
     (focusables[0] || closeBtn).focus();
   };
@@ -53,7 +52,6 @@ function buildTopbar() {
     menu.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('no-scroll');
 
-    // fokus tilbage til burger
     (lastFocused || burger).focus();
   };
 
@@ -65,19 +63,15 @@ function buildTopbar() {
     }
   };
 
-  // Handlers
   burger.addEventListener('click', toggle);
   closeBtn.addEventListener('click', close);
 
-  // Klik i overlay (uden for links/indhold) lukker
   menu.addEventListener('click', (e) => {
     if (e.target === menu) close();
   });
 
-  // Luk på link-klik
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
 
-  // Escape for at lukke + fokus-trap med Tab
   document.addEventListener('keydown', (e) => {
     if (!menu.classList.contains('active')) return;
 

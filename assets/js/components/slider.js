@@ -1,4 +1,5 @@
 // assets/js/components/slider.js
+
 // Hero-konfiguration pr. side (default titler + billeder)
 const HERO = {
   forside: {
@@ -13,6 +14,9 @@ const HERO = {
   aktiviteter: { imgs: ['assets/img/heros/aktiviteter.jpg'], title: 'Aktiviteter' },
   'min-liste': { imgs: ['assets/img/heros/min-liste.jpg'],   title: 'Min liste' },
   gitte:       { imgs: ['assets/img/heros/gitte.jpg'],       title: 'Gitte' },
+
+  // ➕ NY: hero til "Mine beskeder" (bruger kontakt-billedet/stemning)
+  beskeder:    { imgs: ['assets/img/heros/kontakt.jpg'],     title: 'Mine beskeder' },
 };
 
 // fallback hvis body-id mangler

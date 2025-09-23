@@ -1,4 +1,6 @@
-// Kontakt: bygger hele sektionen inde i <main> på siden med <body id="kontakt">
+// assets/js/components/contactform.js
+
+// Bygger hele kontaktsektionen, kun når <body id="kontakt">
 export function initContactForm() {
   if (document.body.id !== "kontakt") return;
 
@@ -43,23 +45,64 @@ export function initContactForm() {
           <p class="contact-success" hidden>Tak! Din besked er sendt ✅</p>
         </form>
 
+        <div class="contact-tools">
+          <a href="mine-beskeder.html" class="msg-link">
+            Se mine beskeder (<span id="msg-count">0</span>)
+          </a>
+        </div>
+
       </div>
     </section>
   `;
 
   const form = main.querySelector(".contact-form");
   const success = main.querySelector(".contact-success");
+  const countEl = main.querySelector("#msg-count");
+
+  // helper: læs/skriv localStorage
+  const readList = () => JSON.parse(localStorage.getItem("sentMessages") || "[]");
+  const writeList = (arr) => localStorage.setItem("sentMessages", JSON.stringify(arr));
+
+  const updateCounter = () => {
+    const n = readList().length;
+    if (countEl) countEl.textContent = String(n);
+  };
+
+  updateCounter(); // vis aktuel mængde ved load
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!form.checkValidity()) return form.reportValidity();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-    // Ekstraopgave: gem til “Mine beskeder”
-    const data = Object.fromEntries(new FormData(form).entries());
-    const list = JSON.parse(localStorage.getItem("sentMessages") || "[]");
-    list.push({ ...data, ts: Date.now() });
-    localStorage.setItem("sentMessages", JSON.stringify(list));
+    const fd = new FormData(form);
+    const name = (fd.get("name") || "").toString().trim();
+    const email = (fd.get("email") || "").toString().trim();
+    const categoryValue = (fd.get("category") || "").toString().trim();
+    const message = (fd.get("message") || "").toString().trim();
 
+    // Brug valgt option-tekst som "subject"/emne
+    const catSel = form.querySelector("#cf-cat");
+    let subject = "";
+    if (catSel && catSel instanceof HTMLSelectElement) {
+      subject = catSel.selectedOptions[0]?.textContent?.trim() || "";
+    }
+
+    const entry = {
+      name,
+      email,
+      subject: subject || categoryValue || "Ingen emne",
+      message,
+      ts: Date.now(),
+    };
+
+    const list = readList();
+    list.push(entry);
+    writeList(list);
+
+    updateCounter();
     success.hidden = false;
     form.reset();
   });

@@ -76,13 +76,9 @@ body#kontakt main::before {
   color: #b9c6c4;
 }
 
-/* --- Knap --- */
-.contact-form button {
-  align-self: center;
-  margin-top: 20px;
-}
-
+/* --- Indsend-knap (samme stil som jeres btn) --- */
 .contact-form button.btn {
+  align-self: center;
   border-radius: 50px 0 50px 0;
   padding: 20px 60px;
   color: white;
@@ -91,24 +87,56 @@ body#kontakt main::before {
   font-family: "Zen Loop";
   font-size: 2rem;
   cursor: pointer;
+  margin-top: 20px;
 }
 
-/* Kontakt: gør select-listen læsbar */
+/* Select: læsbar dropdown */
 body#kontakt .contact-form select {
   color: #fff;                 /* tekst i det lukkede felt */
   background: transparent;
   appearance: none;
 }
-
-/* Selve dropdown-listen (når den er åben) */
 body#kontakt .contact-form select option {
   background: #ffffff;         /* lys baggrund i listen */
   color: #0f2b2f;              /* mørk tekst */
 }
-
-/* Markerede/valgte optioner i listen */
 body#kontakt .contact-form select option:checked,
 body#kontakt .contact-form select option:focus {
   background: #eaf1f1;
   color: #0f2b2f;
+}
+
+/* --- "Se mine beskeder" som knap (transparent med kant) --- */
+.contact-tools {
+  margin-top: 24px;           /* luft mellem indsend-knap og link-knap */
+  display: flex;
+  justify-content: flex-end;  /* højre side på desktop */
+}
+
+body#kontakt .msg-link {
+  display: inline-block;
+  padding: 14px 40px;
+  border-radius: 50px 0 50px 0;
+  border: 1px solid #b9c6c4;
+  background: transparent;
+  color: #b9c6c4;
+  font-family: "Zen Loop", cursive;
+  font-size: 1.6rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+body#kontakt .msg-link:hover {
+  background-color: rgba(255,255,255,0.1);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Mobile: centrér link-knappen */
+@media (max-width: 600px) {
+  .contact-tools {
+    justify-content: center;
+  }
 }

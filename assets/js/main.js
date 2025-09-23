@@ -25,3 +25,5 @@ import { initContactForm } from "./components/contactform.js";
 if (document.body.id === "kontakt") {
   initContactForm();
 }
+import { renderMessages } from "./components/messages.js";
+renderMessages();
