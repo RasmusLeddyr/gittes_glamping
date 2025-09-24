@@ -14,20 +14,18 @@ const ELMT_stay_single = document.querySelector("#stay_page");
 
 // set up HTML templates
 const TMPL_stay_price = (data) => {
-  let price_tag = "show";
+  let price_tag = "price";
   let discount_tag = "hide";
   if (data.discountInPercent > 0) {
     price_tag = "cross";
-    discount_tag = "show";
+    discount_tag = "discount";
   }
   return `
-<p>
 <span class="${price_tag}">${
     data.price
-  }</span><span class="${discount_tag}"> <span class="discount">${Math.round(
+  }</span><span class="${discount_tag}"> <span class="price">${Math.round(
     data.price - data.price * (data.discountInPercent / 100)
   )} </span>(${data.discountInPercent}%)</span>,-
-</p>
 `;
 };
 
@@ -36,7 +34,7 @@ const TMPL_stay_card = (data) => {
 <div class="card">
     <div class="title">
         <h1>${data.title}</h1>
-        ${TMPL_stay_price(data)}
+        <p>${TMPL_stay_price(data)}</p>
         <p>${data.numberOfPersons} personer</p>
     </div>
     <img src="${data.image}" alt="" />
@@ -48,11 +46,14 @@ const TMPL_stay_card = (data) => {
 const TMPL_stay_single = (data) => {
   const includes = data.includes.map((item) => `<li>${item}</li>`).join("");
   return `
-<h1 class="title">Tag væk en weekend, men én du holder af</h1>
-<p class="desc">${data.description}</p>
-<p class="info_title">Med i pakken, er der inkluderet:</p>
-<ul class="includes">${includes}</ul>
-<p>price</p>
+<h1 class="title">Tag væk en weekend, med én du holder af</h1>
+<div class="info">
+  <p class="desc">${data.description}</p>
+  <p class="include_title">Med i pakken, er der inkluderet:</p>
+  <ul class="includes">${includes}</ul>
+</div>
+
+<p class="price_container">Pris ${TMPL_stay_price(data)}</p>
 <button class="btn">BOOK NU</button>
 `;
 };
