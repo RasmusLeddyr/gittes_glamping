@@ -1,5 +1,6 @@
 #stays {
   background-color: #cfd3ce;
+  padding-top: 16px;
 }
 
 #stays .cards {
@@ -8,7 +9,7 @@
   flex-direction: column;
   gap: 229px;
   padding-bottom: 142px;
-  padding-top: 98px;
+  padding-top: 185px;
 }
 
 #stays .card {
@@ -66,7 +67,6 @@
   aspect-ratio: 1/1;
   display: block;
   object-fit: cover;
-  width: 100%;
   width: 100%;
 }
 
