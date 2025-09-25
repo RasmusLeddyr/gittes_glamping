@@ -1,6 +1,6 @@
 #stays {
   background-color: #cfd3ce;
-  padding-top: 16px;
+  padding-top: 185px;
 }
 
 #stays .cards {
@@ -9,7 +9,6 @@
   flex-direction: column;
   gap: 229px;
   padding-bottom: 142px;
-  padding-top: 185px;
 }
 
 #stays .card {
