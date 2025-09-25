@@ -27,3 +27,6 @@ if (document.body.id === "kontakt") {
 }
 import { renderMessages } from "./components/messages.js";
 renderMessages();
+
+import { renderGitteIntro } from "./components/gitteIntro.js";
+renderGitteIntro();

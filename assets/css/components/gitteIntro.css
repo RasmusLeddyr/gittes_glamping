@@ -1,0 +1,69 @@
+/* assets/css/components/gitteIntro.css */
+
+/* Sektionen bruger IKKE sliderens tint – det er et almindeligt billede */
+.gitte-intro {
+  background: #34626C;           /* jeres kontakt/teal-farve */
+  color: #fff;
+  border-top-left-radius: 60px;  /* samme formsprog som resten */
+  padding: 56px 18px 72px;
+}
+
+.gi-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.gi-title {
+  font-family: "Zen Loop", cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(32px, 7vw, 64px);
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+
+.gi-text {
+  font-family: "Nanum Gothic", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(14px, 2.4vw, 17px);
+  line-height: 1.6;
+  opacity: .95;
+  margin: 0 auto 28px;
+  max-width: 680px;
+}
+
+/* Rundt foto – ingen tint */
+.gi-photo-wrap {
+  margin: 6px 0 28px;
+}
+
+.gi-photo {
+  width: clamp(160px, 36vw, 220px);
+  height: clamp(160px, 36vw, 220px);
+  object-fit: cover;
+  border-radius: 999px;
+  border: 6px solid rgba(255,255,255,.25);
+  display: inline-block;
+}
+
+/* CTA – bruger jeres btn-stil men lidt fladere padding for balancen */
+.gi-cta.btn {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 18px 44px;
+  border-radius: 50px 0 50px 0;
+  background: #839B97;  /* jeres sand-farve hvis du vil – eller behold .btn baggrund */
+  color: #fff;
+  text-decoration: none;
+  font-family: "Zen Loop", cursive;
+  font-size: clamp(22px, 5vw, 32px);
+  border: none;
+  cursor: pointer;
+}
+
+/* Lidt mere luft på store skærme + “kort”-look */
+@media (min-width: 900px) {
+  .gitte-intro {
+    padding: 72px 24px 88px;
+    border-radius: 60px 0 60px 0;
+  }
+}
