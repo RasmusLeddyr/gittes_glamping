@@ -1,6 +1,5 @@
 // assets/js/components/contactform.js
 
-// Bygger hele kontaktsektionen, kun når <body id="kontakt">
 export function initContactForm() {
   if (document.body.id !== "kontakt") return;
 
@@ -9,7 +8,6 @@ export function initContactForm() {
 
   main.innerHTML = `
     <section class="contact-overlap"></section>
-
     <section class="contact-section">
       <div class="contact-inner">
 
@@ -70,18 +68,37 @@ export function initContactForm() {
   const success = main.querySelector(".contact-success");
   const countEl = main.querySelector("#msg-count");
 
-  // helpers til storage
   const readList = () => JSON.parse(localStorage.getItem("sentMessages") || "[]");
   const writeList = (arr) => localStorage.setItem("sentMessages", JSON.stringify(arr));
   const updateCounter = () => { if (countEl) countEl.textContent = String(readList().length); };
   updateCounter();
 
-  // === Validering ===
   const nameInput = form.querySelector('#cf-name');
   const emailInput = form.querySelector('#cf-email');
-  const categorySel = form.querySelector('#cf-cat');
+  const categorySel = form.querySelector('#cf-cat'); // 
   const messageTxt = form.querySelector('#cf-msg');
 
+  // === : Auto-fill category from selected stay (localStorage)
+  (function hydrateFromStay() {
+    try {
+      const selected = JSON.parse(localStorage.getItem("selectedStay") || "null");
+      if (selected && categorySel) {
+        let opt = categorySel.querySelector('option[data-from="stay"]');
+        if (!opt) {
+          opt = document.createElement('option');
+          opt.dataset.from = "stay";
+          categorySel.prepend(opt);
+        }
+        opt.value = `stay:${selected.id}`;
+        opt.textContent = selected.title;
+        categorySel.value = opt.value;
+
+        localStorage.removeItem("selectedStay"); // cleanup
+      }
+    } catch (_) {}
+  })();
+
+  // === Validering ===
   const getErrEl = (name) => form.querySelector(`.field-error[data-for="${name}"]`);
   const showErr = (inputEl, msg, nameKey) => {
     const err = getErrEl(nameKey);
@@ -99,7 +116,7 @@ export function initContactForm() {
     }
   };
 
-  const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ '\-]+$/; // bogstaver, mellemrum, bindestreg, apostrof
+  const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ '\-]+$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateField = (el) => {
@@ -142,7 +159,6 @@ export function initContactForm() {
     return msg === "";
   };
 
-  // live validering
   fields.forEach(({ el, key }) => {
     ['input', 'blur', 'change'].forEach(evt =>
       el.addEventListener(evt, () => validateAndPaint(el, key))
@@ -152,7 +168,6 @@ export function initContactForm() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // kør validering på alle felter
     let firstInvalid = null;
     fields.forEach(({ el, key }) => {
       const ok = validateAndPaint(el, key);
@@ -164,7 +179,6 @@ export function initContactForm() {
       return;
     }
 
-    // gem til “Mine beskeder”
     const catText = categorySel.selectedOptions[0]?.textContent?.trim() || "";
     const entry = {
       name: nameInput.value.trim(),
@@ -181,7 +195,6 @@ export function initContactForm() {
     updateCounter();
     success.hidden = false;
     form.reset();
-    // ryd fejl-styling efter reset
     fields.forEach(({ el, key }) => showErr(el, "", key));
   });
 }

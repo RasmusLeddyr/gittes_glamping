@@ -13,7 +13,6 @@ const ELMT_stay_single = document.querySelector("#stay_page");
 //
 
 // set up HTML templates
-
 const TMPL_stay_price = (data) => {
   let price_tag = "price";
   let discount_tag = "hide";
@@ -57,25 +56,18 @@ const TMPL_stay_single = (data) => {
 </div>
 
 <p class="price_container">Pris ${TMPL_stay_price(data)}</p>
-<a href="kontakt.html" class="btn">BOOK NU</a>
+<button type="button" class="btn js-book" data-id="${data._id}" data-title="${data.title}">BOOK NU</button> <!-- NEW -->
 `;
 };
 //
 
-//
 const FetchURLData = () => {
-  // define variables
   let title = "";
   let image = "";
   let error = "";
   let select = "";
-  //
 
-  // find id from url
   const params = new URLSearchParams(window.location.search);
-  //
-
-  // if id does not exist, print error
   const id = params.get("id");
   if (id) {
     select = DATA_stays.find((item) => String(item._id) === String(id));
@@ -88,19 +80,13 @@ const FetchURLData = () => {
   } else {
     error = "<h1>URL did not provide ID</h1>";
   }
-  //
 
-  // return data
   return [title, image, error, select];
-  //
 };
 //
 
-// export code
 export async function Stays() {
-  // check if page is "ophold"
   if (ELMT_stays) {
-    // print cards using TMPL_stay_card
     const cards = ELMT_stays.querySelector(".cards");
     Search({
       bar_parent: cards,
@@ -111,11 +97,8 @@ export async function Stays() {
       fields: ["title"],
       placeholder: "Søg ophold.",
     });
-    //
   }
-  //
 
-  // check if page is "ophold-single"
   if (ELMT_stay_single) {
     const [title, image, error, select] = SingleStayData();
     if (error) {
@@ -125,14 +108,22 @@ export async function Stays() {
         "beforeend",
         TMPL_stay_single(select)
       );
+
+      // === NEW: Save chosen stay to localStorage + redirect
+      const bookBtn = ELMT_stay_single.querySelector(".js-book");
+      if (bookBtn) {
+        bookBtn.addEventListener("click", (e) => {
+          const id = e.currentTarget.dataset.id;
+          const title = e.currentTarget.dataset.title;
+          localStorage.setItem("selectedStay", JSON.stringify({ id, title })); // 
+          window.location.href = "kontakt.html";                               // 
+        });
+      }
     }
   }
-  //
 }
 //
 
-// export single stay data for header
 export function SingleStayData() {
   return FetchURLData();
 }
-//
