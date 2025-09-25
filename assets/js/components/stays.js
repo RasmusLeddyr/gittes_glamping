@@ -57,7 +57,7 @@ const TMPL_stay_single = (data) => {
 </div>
 
 <p class="price_container">Pris ${TMPL_stay_price(data)}</p>
-<a href="index.html" class="btn">BOOK NU</a>
+<a href="kontakt.html" class="btn">BOOK NU</a>
 `;
 };
 //
