@@ -38,6 +38,7 @@
   top: 0;
   transform: translateY(-50%);
   width: 100%;
+  z-index: 2;
 }
 #stays .card .title h1 {
   --ADAP_text: 60;
@@ -86,6 +87,7 @@
   text-align: center;
   transform: translateY(50%);
   width: 100%;
+  z-index: 2;
 }
 
 /* Single page */
@@ -93,43 +95,43 @@
 #stay_page {
   --overlap: 83px;
   align-items: center;
-  justify-content: center;
   background-color: #34626c;
   border-radius: 70px 0 0 0;
+  color: white;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin-top: calc(-1 * var(--overlap));
   padding-bottom: calc(100px);
   padding-top: var(--overlap);
   position: relative;
   z-index: 2;
-  color: white;
 }
 
 #stay_page .title {
-  --ADAP_text: 60;
-  --ADAP_text_cut: 0.5;
-  --ADAP_margr: 50;
-  --ADAP_margr_cut: 0;
   --ADAP_margl: 50;
   --ADAP_margl_cut: 0;
-  font-weight: normal;
-  text-align: center;
-  margin-bottom: 37px;
+  --ADAP_margr: 50;
+  --ADAP_margr_cut: 0;
+  --ADAP_text: 60;
+  --ADAP_text_cut: 0.5;
   font-family: "Zen Loop";
+  font-weight: normal;
+  margin-bottom: 37px;
+  text-align: center;
 }
 
 #stay_page .info {
-  font-family: "NanumGothic";
-  --ADAP_text: 14;
-  --ADAP_text_cut: 0.5;
-  --ADAP_margr: 23;
-  --ADAP_margr_cut: 0;
   --ADAP_margl: 24;
   --ADAP_margl_cut: 0;
+  --ADAP_margr: 23;
+  --ADAP_margr_cut: 0;
+  --ADAP_text: 14;
+  --ADAP_text_cut: 0.5;
+  font-family: "NanumGothic";
   font-weight: normal;
-  text-align: center;
   margin-bottom: calc(33px + 1em);
+  text-align: center;
 }
 #stay_page .info .desc {
   margin-bottom: 2em;
@@ -142,15 +144,15 @@
 }
 
 #stay_page .price_container {
-  font-family: "Zen Loop";
   --ADAP_text: 30;
   --ADAP_text_cut: 0.5;
+  font-family: "Zen Loop";
   font-weight: normal;
   margin-bottom: 29px;
 }
 #stay_page .cross {
-  text-decoration: line-through;
   opacity: 0.5;
+  text-decoration: line-through;
 }
 #stap_page .hide {
   display: none;

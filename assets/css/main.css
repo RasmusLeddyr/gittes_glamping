@@ -1,3 +1,4 @@
+/* import CSS files */
 @import url("functions.css");
 @import url("components/activity-card.css");
 @import url("components/buttons.css");
@@ -10,3 +11,21 @@
 @import url("components/contactform.css");
 @import url("components/messages.css");
 @import url("components/search_butn.css");
+
+/* set overlay for images */
+.image_overlay {
+  overflow: hidden;
+  position: relative;
+}
+.image_overlay::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 79, 83, 0.7) 0%,
+    rgba(47, 79, 83, 0.58) 40%,
+    rgba(47, 79, 83, 0.48) 100%
+  );
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}

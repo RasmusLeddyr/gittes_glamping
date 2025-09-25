@@ -37,7 +37,9 @@ const TMPL_stay_card = (data) => {
         <p>${TMPL_stay_price(data)}</p>
         <p>${data.numberOfPersons} personer</p>
     </div>
-    <img src="${data.image}" alt="" />
+    <div class="image_overlay">
+      <img src="${data.image}" alt="" />
+    </div>
     <a href="ophold-single.html?id=${encodeURIComponent(data._id)}">LÆS MERE</a>
 </div>
 `;
