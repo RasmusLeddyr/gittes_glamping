@@ -13,6 +13,7 @@ const ELMT_stay_single = document.querySelector("#stay_page");
 //
 
 // set up HTML templates
+
 const TMPL_stay_price = (data) => {
   let price_tag = "price";
   let discount_tag = "hide";
@@ -56,7 +57,7 @@ const TMPL_stay_single = (data) => {
 </div>
 
 <p class="price_container">Pris ${TMPL_stay_price(data)}</p>
-<button class="btn">BOOK NU</button>
+<a href="index.html" class="btn">BOOK NU</a>
 `;
 };
 //
