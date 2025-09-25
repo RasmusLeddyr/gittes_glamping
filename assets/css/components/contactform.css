@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Zen+Loop:ital@0;1&display=swap");
 
-/* --- Container for kontakt siden --- */
+/* ============================================
+   Kontakt-side: base layout
+   ============================================ */
+
+/* Main container – blå baggrund, luft og standard font */
 body#kontakt main {
   position: relative;
   background-color: #34626C; /* kontaktfarven */
@@ -10,7 +14,7 @@ body#kontakt main {
   font-family: "Nanum Gothic", sans-serif;
 }
 
-/* BUE øverst venstre hjørne */
+/* Øverste bue i venstre hjørne (overlay-effekt) */
 body#kontakt main::before {
   content: "";
   position: absolute;
@@ -18,16 +22,18 @@ body#kontakt main::before {
   left: 0;
   width: 100%;
   height: 68px;
-  background: #34626C; /* samme farve som baggrunden */
+  background: #34626C; /* matcher baggrunden så buen ser udskåret ud */
   border-top-left-radius: 60px;
-  pointer-events: none;
+  pointer-events: none; /* skal ikke kunne interageres med */
 }
 
-/* --- Intro boks --- */
+/* ============================================
+   Intro-tekst boks
+   ============================================ */
 .contact-intro {
-  background-color: #34626C; /* samme farve */
+  background-color: #34626C; /* samme farve som main → integreret look */
   padding: 20px;
-  border-radius: 60px 0 60px 0;
+  border-radius: 60px 0 60px 0; /* signatur-hjørner */
   margin-bottom: 30px;
 }
 
@@ -35,7 +41,7 @@ body#kontakt main::before {
   font-family: "Zen Loop", cursive;
   font-size: 2rem;
   margin-bottom: 10px;
-  color: #b9c6c4;
+  color: #b9c6c4; /* kontrast mod blå baggrund */
   text-align: center;
 }
 
@@ -46,19 +52,23 @@ body#kontakt main::before {
   color: white;
 }
 
-/* --- Formular --- */
+/* ============================================
+   Formularen
+   ============================================ */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 15px; /* luft mellem felter */
 }
 
+/* Labels gemmes visuelt, men kan beholdes til skærmlæsere */
 .contact-form label {
   font-size: 0.9rem;
   margin-bottom: 4px;
   display: block;
 }
 
+/* Input, textarea, select – samme look */
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
@@ -71,12 +81,13 @@ body#kontakt main::before {
   font-family: "Nanum Gothic", sans-serif;
 }
 
+/* Placeholder tekst: lidt lysere grå */
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: #b9c6c4;
 }
 
-/* --- Indsend-knap (samme stil som jeres btn) --- */
+/* Indsend-knap – matcher jeres btn-stil */
 .contact-form button.btn {
   align-self: center;
   border-radius: 50px 0 50px 0;
@@ -90,29 +101,40 @@ body#kontakt main::before {
   margin-top: 20px;
 }
 
-/* Select: læsbar dropdown */
+/* ============================================
+   Dropdown (select)
+   ============================================ */
+
+/* Selve feltet */
 body#kontakt .contact-form select {
-  color: #fff;                 /* tekst i det lukkede felt */
+  color: #fff;                 /* hvid tekst når lukket */
   background: transparent;
-  appearance: none;
+  appearance: none;            /* fjerner default pil på de fleste browsere */
 }
+
+/* Mulighederne i dropdown-listen */
 body#kontakt .contact-form select option {
-  background: #ffffff;         /* lys baggrund i listen */
-  color: #0f2b2f;              /* mørk tekst */
+  background: #ffffff;         /* hvid baggrund på listen */
+  color: #0f2b2f;              /* mørk tekst for læsbarhed */
 }
+
+/* Valgt eller fokuseret option */
 body#kontakt .contact-form select option:checked,
 body#kontakt .contact-form select option:focus {
   background: #eaf1f1;
   color: #0f2b2f;
 }
 
-/* --- "Se mine beskeder" som knap (transparent med kant) --- */
+/* ============================================
+   Link-knap "Se mine beskeder"
+   ============================================ */
 .contact-tools {
-  margin-top: 24px;           /* luft mellem indsend-knap og link-knap */
+  margin-top: 24px;           /* luft efter indsend-knap */
   display: flex;
   justify-content: flex-end;  /* højre side på desktop */
 }
 
+/* Selve knappen: transparent med kant */
 body#kontakt .msg-link {
   display: inline-block;
   padding: 14px 40px;
@@ -128,27 +150,32 @@ body#kontakt .msg-link {
   transition: all 0.3s ease;
 }
 
+/* Hover-effekt: mere kontrast */
 body#kontakt .msg-link:hover {
   background-color: rgba(255,255,255,0.1);
   border-color: #fff;
   color: #fff;
 }
 
-/* Mobile: centrér link-knappen */
+/* På mobil: centrér i stedet for højre */
 @media (max-width: 600px) {
   .contact-tools {
     justify-content: center;
   }
 }
 
-/* --- Felter grupperes så fejltekst kan ligge under --- */
+/* ============================================
+   Validering og fejl-feedback
+   ============================================ */
+
+/* Wrapper til felter: giver plads til fejltekst */
 .contact-form .field {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-/* Ugyldigt felt – diskret, men tydeligt på #34626C baggrund */
+/* Når et felt er ugyldigt → rødlig markering */
 .contact-form .is-invalid {
   border-color: #ffb8b8 !important;
   background-color: rgba(255, 255, 255, 0.06);
@@ -161,26 +188,10 @@ body#kontakt .msg-link:hover {
   line-height: 1.2;
 }
 
-/* Fokus-stil for bedre tilgængelighed */
+/* Fokus-effekt (bedre tilgængelighed med tastatur) */
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
   outline: 2px solid rgba(255,255,255,0.35);
   outline-offset: 1px;
-}
-
-/* Gør select mere læsbar, men behold jeres tema */
-body#kontakt .contact-form select {
-  color: #fff;
-  background: transparent;
-  appearance: none;
-}
-body#kontakt .contact-form select option {
-  background: #ffffff;
-  color: #0f2b2f;
-}
-body#kontakt .contact-form select option:checked,
-body#kontakt .contact-form select option:focus {
-  background: #eaf1f1;
-  color: #0f2b2f;
 }

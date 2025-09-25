@@ -1,13 +1,28 @@
 // assets/js/components/messages.js
+
+/**
+ * Viser "Mine beskeder"-siden.
+ * - Loader beskeder fra localStorage
+ * - Viser dem i kort (seneste først)
+ * - Tillader at slette enkelte beskeder eller alle
+ */
 export function renderMessages() {
+  // === 1. Skal vi køre? ===
+  // Kører kun hvis vi er på siden med <body id="beskeder">
   if (document.body.id !== "beskeder") return;
 
+  // Find container til at udskrive beskeder
   const host = document.querySelector("#messages");
   if (!host) return;
 
+  // === 2. Hjælpefunktioner til localStorage ===
+  // Loader liste af beskeder (eller tom array)
   const load = () => JSON.parse(localStorage.getItem("sentMessages") || "[]");
+  // Gemmer liste af beskeder
   const save = (arr) => localStorage.setItem("sentMessages", JSON.stringify(arr));
 
+  // === 3. UI-templates ===
+  // Vises hvis der ingen beskeder er
   const emptyView = () => {
     host.innerHTML = `
       <div class="msg-empty">
@@ -17,6 +32,7 @@ export function renderMessages() {
     `;
   };
 
+  // Template for ét besked-kort
   const card = (msg, i) => `
     <div class="msg-item" data-index="${i}">
       <h3>${msg.subject || "Ingen emne"}</h3>
@@ -30,18 +46,20 @@ export function renderMessages() {
     </div>
   `;
 
+  // === 4. Tegn hele listen ===
   const draw = () => {
     let list = load();
 
+    // Hvis der ingen beskeder er
     if (!Array.isArray(list) || list.length === 0) {
       emptyView();
       return;
     }
 
-    // Nyeste først
+    // Sortér beskeder: nyeste først
     list = list.sort((a, b) => (b.ts || 0) - (a.ts || 0));
 
-    // Byg HTML
+    // Byg alle kort som HTML
     const items = list.map(card).join("");
     host.innerHTML = `
       <div class="msg-list">
@@ -56,43 +74,46 @@ export function renderMessages() {
       </div>
     `;
 
-    // Slet én
-    host.querySelectorAll(".js-delete").forEach((btn, domIndex) => {
+    // === 5. Funktionalitet: Slet én besked ===
+    host.querySelectorAll(".js-delete").forEach((btn) => {
       btn.addEventListener("click", () => {
-        // Find rigtig index i den viste (sorterede) liste:
+        // Find den besked, der skal slettes (matcher på tidspunkt + emne)
         const cardEl = btn.closest(".msg-item");
         const whenText = cardEl?.querySelector(".msg-ts")?.textContent?.trim() || "";
         const subject = cardEl?.querySelector("h3")?.textContent?.trim() || "";
 
-        // Genindlæs fuld liste (usorteret), og fjern første match på ts+subject
+        // Hent hele listen igen (i usorteret form)
         const full = load();
+        // Find første match i den originale liste
         const idx = full.findIndex((m) => {
           const tsMatch = new Date(m.ts || 0).toLocaleString("da-DK") === whenText;
           const subMatch = (m.subject || "Ingen emne") === subject;
           return tsMatch && subMatch;
         });
 
+        // Hvis fundet → fjern den
         if (idx > -1) {
           full.splice(idx, 1);
           if (full.length) save(full);
-          else localStorage.removeItem("sentMessages");
+          else localStorage.removeItem("sentMessages"); // hvis tom liste → fjern helt
         }
 
-        draw(); // re-render
+        draw(); // tegn listen igen
       });
     });
 
-    // Slet alle
+    // === 6. Funktionalitet: Slet alle beskeder ===
     const clearAll = host.querySelector(".js-clearall");
     if (clearAll) {
       clearAll.addEventListener("click", () => {
         if (confirm("Vil du slette alle sendte beskeder?")) {
           localStorage.removeItem("sentMessages");
-          draw();
+          draw(); // tegn listen igen (tom)
         }
       });
     }
   };
 
+  // Første kald → tegn siden
   draw();
 }

@@ -1,49 +1,56 @@
-/* ===== Topbar ===== */
+/* =====================================================
+   TOPBAR – fast navigation (ligger over hero/slider)
+   ===================================================== */
 .Topbar {
   width: 100%;
-  position: absolute;         /* ligger ovenpå hero/slider */
+  position: absolute;          /* placeres ovenpå hero-billedet */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  background: transparent;    /* gennemsigtig baggrund */
+  z-index: 1000;               /* høj prioritet, så den altid er synlig */
+  background: transparent;     /* gennemsigtig baggrund = hero ses bagved */
 
-  display: flex;              /* logo og burger i samme række */
-  align-items: center;        /* centrer vertikalt */
+  display: flex;               /* flex: logo og burger i samme række */
+  align-items: center;         /* centrer vertikalt */
   justify-content: space-between; /* logo venstre, burger højre */
-  padding: 1rem;              /* luft til kanterne */
+  padding: 1rem;               /* luft til kanter */
   box-sizing: border-box;
 }
 
-/* Logo */
+/* =====================================================
+   Logo (venstre hjørne)
+   ===================================================== */
 .topbar-logo {
   display: flex;
   align-items: center;
-  text-decoration: none;
+  text-decoration: none; /* ingen understregning */
 }
 
 .topbar-logo__img {
   width: 40px;
   height: 40px;
   display: block;
-  filter: brightness(0) invert(1); /* hvidt logo */
+  filter: brightness(0) invert(1); /* konverter logo til hvidt */
 }
 
-/* ===== Burger ===== */
+/* =====================================================
+   BURGERMENU (knappen til mobilmenu)
+   ===================================================== */
 .burger {
   width: 40px;
   height: 40px;
   border: 0;
   border-radius: 8px;
-  background: #839B97;
+  background: #839B97;          /* knapfarve */
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: column;       /* tre linjer under hinanden */
+  gap: 4px;                     /* afstand mellem linjerne */
   cursor: pointer;
 }
 
+/* De tre streger */
 .burger span {
   width: 20px;
   height: 2px;
@@ -51,29 +58,35 @@
   display: block;
 }
 
-/* ===== Overlay-menu ===== */
+/* =====================================================
+   MOBILMENU (overlay som dækker hele skærmen)
+   ===================================================== */
 .mobile-menu {
   position: fixed;
-  inset: 0;
-  display: none; /* skjult fra start */
-  background: #839B97;
-  z-index: 2000;
+  inset: 0;                     /* fylder hele viewport */
+  display: none;                /* skjult fra start */
+  background: #839B97;          /* baggrundsfarve */
+  z-index: 2000;                /* højere end topbar */
+  
+  /* centrér links i midten */
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 1.5rem;
 
-  /* Brug samme font som hero */
+  /* Brug samme font som hero for konsistens */
   font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Når menuen åbnes = synlig (flex layout) */
 .mobile-menu.active {
   display: flex;
 }
 
+/* Links i mobilmenu */
 .mobile-menu a {
   font-size: 1.8rem;
   color: #fff;
@@ -82,18 +95,21 @@
   font-family: inherit; /* arver fra .mobile-menu */
 }
 
+/* Hover/fokus effekt på links */
 .mobile-menu a:hover,
 .mobile-menu a:focus {
-  color: #f0d98c;
+  color: #f0d98c; /* gul highlight */
   outline: none;
 }
 
-/* Luk-knap */
+/* =====================================================
+   Luk-knap (X øverst i menuen)
+   ===================================================== */
 .close-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  font-size: 2.2rem;
+  font-size: 2.2rem;         /* stor X-knap */
   background: transparent;
   border: 0;
   color: #fff;
@@ -105,7 +121,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Ingen scroll i baggrunden når menu er aktiv */
+/* =====================================================
+   Body no-scroll (forhindrer baggrund i at scrolle)
+   ===================================================== */
 body.no-scroll {
   overflow: hidden;
 }
