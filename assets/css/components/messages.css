@@ -1,6 +1,6 @@
 /* ===== Mine beskeder ===== */
 
-#beskeder main{
+#beskeder main {
   background:#3e6668;                 /* samme som kontakt-sektionen */
   color:#fff;
   border-top-left-radius:60px;        /* venstre bue */
@@ -9,14 +9,14 @@
 }
 
 /* centrér indhold */
-#messages{
+#messages {
   width:min(1000px, 92%);
   margin:0 auto;
 }
 
 /* sideoverskrift */
 #messages h1,
-#messages h2{
+#messages h2 {
   font-family:"Zen Loop", cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight:200;
   font-size:clamp(34px, 6vw, 56px);
@@ -24,7 +24,7 @@
 }
 
 /* hvert besked-kort */
-.msg-item{
+.msg-item {
   background:#2c5a63;                 /* lidt mørkere end sektionen for kontrast */
   border:1px solid rgba(255,255,255,.20);
   border-radius:24px 0 24px 0;        /* jeres signatur-hjørner */
@@ -33,7 +33,7 @@
 }
 
 /* emnet/”title” på kortet */
-.msg-item h3{
+.msg-item h3 {
   margin:0 0 10px;
   font-family:"Zen Loop", cursive;
   font-weight:200;
@@ -42,10 +42,12 @@
 }
 
 /* tekst */
-.msg-item p{ margin:4px 0; }
+.msg-item p { 
+  margin:4px 0; 
+}
 
 /* tidspunkt nede i bunden */
-.msg-item .msg-ts{
+.msg-item .msg-ts {
   display:block;
   margin-top:8px;
   font-size:14px;
@@ -53,6 +55,28 @@
 }
 
 /* tom tilstand */
-.msg-empty{
+.msg-empty {
   padding:8px 0 4px;
+}
+
+/* === for Mine beskeder side === */
+body#beskeder {
+  min-height: 100vh;           /* fyld hele højden */
+  display: flex;
+  flex-direction: column;
+}
+
+body#beskeder main {
+  flex: 1 0 auto;              /* skubber footer ned */
+}
+
+body#beskeder .Footer {
+  width: 100%;                 /* undgå 100vw scroll bug */
+  flex-shrink: 0;
+}
+
+body#beskeder html,
+body#beskeder body {
+  margin: 0;
+  padding: 0;
 }
