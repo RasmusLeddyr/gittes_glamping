@@ -30,3 +30,6 @@ renderMessages();
 
 import { renderGitteIntro } from "./components/gitteIntro.js";
 renderGitteIntro();
+
+import { initStaysIntro } from "./components/staysIntro.js";
+initStaysIntro();
