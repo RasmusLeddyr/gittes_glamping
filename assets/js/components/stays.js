@@ -103,8 +103,8 @@ export async function Stays() {
     // print cards using TMPL_stay_card
     const cards = ELMT_stays.querySelector(".cards");
     Search({
-      bar_parent: ELMT_stays,
-      bar_placement: "afterbegin",
+      bar_parent: cards,
+      bar_placement: "beforebegin",
       list: DATA_stays,
       output: cards,
       template: TMPL_stay_card,

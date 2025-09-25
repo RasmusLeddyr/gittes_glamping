@@ -6,6 +6,10 @@
   color: #fff;
   border-top-left-radius: 60px;  /* samme formsprog som resten */
   padding: 56px 18px 72px;
+  --overlap: 83px;
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-1 * var(--overlap));
 }
 
 .gi-wrap {

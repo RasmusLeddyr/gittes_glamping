@@ -3,11 +3,11 @@
    ========================== */
 
 #stays-lead {
-  display: flex;
-  justify-content: center;
-  padding: 24px 16px 12px;   /* top:24px, sider:16px, bund:12px */
-  margin: 0 auto;
-  background: #CFD3CE;
+  --overlap: 83px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 185px;
+  margin-top: calc(-1 * var(--overlap));
 }
 /* Selve boksen (kortet) */
 .stays-lead__box {
@@ -15,12 +15,12 @@
   background: #34626C;         /* blågrøn kort baggrund */
   color: #fff;
   border-radius: 60px 0 60px 0;
-  padding: clamp(18px, 4vw, 36px) clamp(18px, 4vw, 42px);
+  padding: var(--overlap) 24px 93px 24px;
 }
 
 /* Titel */
 .stays-lead__title {
-  margin: 0 0 12px;
+  margin-bottom: 43px;
   text-align: center;
   font-family: 'Zen Loop', cursive;
   font-weight: 400;

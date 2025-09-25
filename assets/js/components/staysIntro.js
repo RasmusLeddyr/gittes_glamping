@@ -3,21 +3,10 @@ export function initStaysIntro() {
   // Kun på ophold-siden
   if (document.body.id !== "ophold") return;
 
-  const main = document.querySelector("main");
-  if (!main) return;
+  const stays_lead = document.querySelector("#stays-lead");
+  if (!stays_lead) return;
 
-  // Brug eksisterende placeholder hvis den findes – ellers opret én øverst i <main>
-  let host = document.querySelector("#stays-lead");
-  if (!host) {
-    host = document.createElement("section");
-    host.id = "stays-lead";
-    // placér introduktionen før kort-listen (#stays), hvis den findes
-    const stays = document.querySelector("#stays");
-    stays ? main.insertBefore(host, stays) : main.prepend(host);
-  }
-
-  // Indhold
-  host.innerHTML = `
+  stays_lead.innerHTML = `
     <div class="stays-lead__box">
       <h2 class="stays-lead__title">Vi har ophold til<br/>enhver smag</h2>
       <p class="stays-lead__text">
