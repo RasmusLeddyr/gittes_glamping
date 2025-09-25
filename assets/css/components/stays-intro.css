@@ -6,12 +6,12 @@
   --overlap: 83px;
   position: relative;
   z-index: 2;
-  margin-bottom: 185px;
   margin-top: calc(-1 * var(--overlap));
+  margin-bottom: 32px;
 }
 /* Selve boksen (kortet) */
 .stays-lead__box {
-  width: min(1000px, 100%);
+  width: 100%;
   background: #34626C;         /* blågrøn kort baggrund */
   color: #fff;
   border-radius: 60px 0 60px 0;
@@ -25,7 +25,8 @@
   font-family: 'Zen Loop', cursive;
   font-weight: 400;
   line-height: 1.06;
-  font-size: clamp(36px, 7vw, 72px);
+  --ADAP_text: 60;
+  --ADAP_text_min: 16;
   color: #fff;
 }
 
@@ -33,29 +34,9 @@
 .stays-lead__text {
   margin: 10px 0;
   font-family: "Nanum Gothic", sans-serif;
-  font-size: clamp(14px, 2.4vw, 18px);
+  --ADAP_text: 14;
+  --ADAP_text_min: 8;
   line-height: 1.55;
   text-align: center;
   color: #fff;
-}
-
-/* Mobiljustering */
-@media (max-width: 480px) {
-  #stays-lead {
-    padding: 20px 12px;
-  }
-
-  .stays-lead__box {
-    border-radius: 36px 0 36px 0;
-    padding: 20px 16px;
-  }
-
-  .stays-lead__title {
-    font-size: clamp(28px, 8vw, 40px);
-  }
-
-  .stays-lead__text {
-    font-size: 14px;
-    line-height: 1.4;
-  }
 }
