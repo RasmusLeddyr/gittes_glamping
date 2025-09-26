@@ -62,16 +62,18 @@ const activitySingleTmpl = (activity) => `
   </div>
 `;
 
+//opretter localstorage variablet
 let likedArray = JSON.parse(localStorage.getItem("likedList")) || [];
 
 // === RENDER FUNKTION ===
 export const renderActivities = () => {
-  // === LISTE-SIDE ===
+  // print activity-hero hvis sidens id er aktiviteter
   if (document.body.id === "aktiviteter") {
     if (activityHero) {
       activityHero.insertAdjacentHTML("beforeend", activityHeroTmpl());
     }
 
+    //hvis cardcontainer så print hver aktivitet i cardcontainer
     if (activityCardContainer) {
       Search({
         bar_parent: activityCardContainer,
@@ -86,11 +88,13 @@ export const renderActivities = () => {
   }
 
   // === ENKELTSIDE ===
+  //hvis på enkeltside udksriv aktivitet med id fra URL
   if (document.body.id === "aktivitet-single") {
     if (activitySingleContainer) {
       const searchBar = new URLSearchParams(window.location.search);
       const id = searchBar.get("id");
 
+      //fejlmelding hvis ingen id i URL
       if (!id) {
         activitySingleContainer.insertAdjacentHTML(
           "beforeend",
@@ -101,6 +105,7 @@ export const renderActivities = () => {
 
       const selectedActivity = activities.find((item) => item._id == id);
 
+      //fejlmelding hvis ingen aktivitet matcher id 
       if (!selectedActivity) {
         activitySingleContainer.insertAdjacentHTML(
           "beforeend",
@@ -109,6 +114,7 @@ export const renderActivities = () => {
         return;
       }
 
+      //hvis ingen fejl blev meldt, print aktiviteten
       activitySingleContainer.insertAdjacentHTML(
         "beforeend",
         activitySingleTmpl(selectedActivity)
@@ -116,13 +122,19 @@ export const renderActivities = () => {
     }
   }
 
-  // === Fælles funktionalitet: læs mere + likes ===
+    // pakker alle læsmere knappe ned i en array 
   const readMoreButtons = document.querySelectorAll(".activity-readmore");
+  //foreach'er over knapperne og tilføjer klikevent
   readMoreButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
+      //pakker teksten der hører til knappen ned i variabel
       const text = btn.nextElementSibling;
+      //tilføjer css-classen der viser teksten
       text.classList.toggle("show");
+      //parent.parent giver mig activitycard
       btn.parentElement.parentElement.classList.toggle("show");
+
+      //hvis tekst bliver vist siger knappen læs mindre, og omvendt
       btn.textContent = text.classList.contains("show")
         ? "Læs Mindre"
         : "Læs Mere";
@@ -133,18 +145,23 @@ export const renderActivities = () => {
     const likeBtns = document.querySelectorAll(".like-btn");
     likeBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
+        //henter id fra den trykte knap
         let activityID = e.currentTarget.id;
+        //finder aktiviteten der passer med id'et
         const activityToAdd = activities.find(
           (activity) => activity._id == activityID
         );
 
+        //laver et variabel der fortæller om min aktivitet allerede findes i localstorage
         const exist = likedArray.find((liked) => liked._id == activityID);
 
+        //hvis ikke den allerede findes tilføjes den til likedArray og localstorage, og opdatere likeknappen til at vise den er liked
         if (!exist) {
           likedArray.push(activityToAdd);
           localStorage.setItem("likedList", JSON.stringify(likedArray));
           btn.classList.toggle("liked");
         } else {
+          //hvis den allerede findes fjernes den fra likes
           btn.classList.toggle("liked");
           likedArray = likedArray.filter((item) => item._id !== activityID);
           if (likedArray.length === 0) {
@@ -156,6 +173,6 @@ export const renderActivities = () => {
       });
     });
   };
-
+ // kalder funktionen
   likeButton();
 };
