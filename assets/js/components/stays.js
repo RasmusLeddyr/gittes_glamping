@@ -14,7 +14,6 @@ const ELMT_stays = document.querySelector("#stays");
 const ELMT_stay_single = document.querySelector("#stay_page");
 //
 
-
 // set HTML template for price tags
 const TMPL_stay_price = (data) => {
   let price_tag = "price";
@@ -30,9 +29,9 @@ const TMPL_stay_price = (data) => {
     data.price - data.price * (data.discountInPercent / 100)
   )} </span>(${data.discountInPercent}%)</span>,-
 `;
-//
+  //
 
-// set HTML template for stay cards
+  // set HTML template for stay cards
 };
 const TMPL_stay_card = (data) => {
   return `
@@ -48,9 +47,9 @@ const TMPL_stay_card = (data) => {
     <a href="ophold-single.html?id=${encodeURIComponent(data._id)}">LÆS MERE</a>
 </div>
 `;
-//
+  //
 
-// set HTML template for stay single page
+  // set HTML template for stay single page
 };
 const TMPL_stay_single = (data) => {
   const includes = data.includes.map((item) => `<li>${item}</li>`).join("");
