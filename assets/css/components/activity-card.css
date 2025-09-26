@@ -52,7 +52,6 @@
   font-family: "Zen Loop";
   top: 0;
   right: 0;
-  bottom: 25%;
   left: 0;
   display: grid;
   place-content: start center;
@@ -60,6 +59,7 @@
   padding-top: 150px;
   font-size: 80px;
   font-weight: 200;
+  height: 500px;
 }
 
 .activity-card-container {

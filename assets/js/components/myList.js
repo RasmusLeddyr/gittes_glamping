@@ -19,15 +19,18 @@ const emptyListTmpl = () =>
 
 export const renderLikedHero = () => {
   if (!likedHeroContainer) return;
-
+  
+  likedHeroContainer.innerHTML = likedHeroTmpl();
+  
+  //henter likede aktiviteter og gemmer dem i array
   const storedLikes = localStorage.getItem("likedList");
   const likedList = storedLikes ? JSON.parse(storedLikes) : [];
-
-  likedHeroContainer.innerHTML = likedHeroTmpl();
-
+  
   const addedCounter = document.querySelector(".added-counter");
   if (addedCounter) addedCounter.textContent = likedList.length;
+
 };
+
 
 export const likedListRender = () => {
   if (!likedListContainer) return;
@@ -46,7 +49,7 @@ export const likedListRender = () => {
     likedListContainer.insertAdjacentHTML("beforeend", activityTmpl(item));
   });
 
-  // Read more
+
   document.querySelectorAll(".activity-readmore").forEach((btn) => {
     btn.addEventListener("click", () => {
       const text = btn.nextElementSibling;
@@ -58,8 +61,8 @@ export const likedListRender = () => {
     });
   });
 
-  // Like knapper
-  document.querySelectorAll(".like-btn").forEach((btn) => {
+ 
+    document.querySelectorAll(".like-btn").forEach((btn) => {
     btn.classList.add("liked");
     btn.addEventListener("click", (e) => {
       const likedID = e.currentTarget.id;
