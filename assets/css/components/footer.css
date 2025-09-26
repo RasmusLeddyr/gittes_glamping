@@ -1,0 +1,95 @@
+/* ===========================
+   Footer base styles
+   =========================== */
+.Footer {
+  background: #2f4f53;   /* mørkegrøn fra XD */
+  width: 100vw;          /* fylder hele skærmbredden */
+  margin: 0;             /* ingen margin rundt om */
+  padding: 2rem 0;       /* luft for oven og neden */
+  display: flex;         /* centrerer indhold */
+  justify-content: center;
+  align-items: center;
+
+  /* Samme font som Hero og Burger-menu → visuelt konsistent */
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nulstil body margin/padding for at undgå hvid kant */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   Indre struktur
+   ============================================ */
+.footer-inner {
+  display: flex;
+  flex-direction: column;  /* stablet ovenpå hinanden: socials + brand */
+  align-items: center;     /* centrer alt horisontalt */
+  gap: 24px;               /* luft mellem elementerne */
+  width: 100%;             /* fylder hele footerens bredde */
+}
+
+/* ============================================
+   Sociale ikoner
+   ============================================ */
+.footer-social {
+  display: flex;
+  gap: 1.5rem;             /* afstand mellem ikoner */
+}
+
+/* Container omkring hvert ikon */
+.footer-icon {
+  display: inline-flex;     /* gør det let at centrere billedet */
+  align-items: center;
+  justify-content: center;
+  background: transparent;  /* ingen baggrund */
+  border: none;
+  padding: 0;
+  transition: transform 0.2s ease; /* zoom-effekt */
+}
+
+/* Ikonbilleder */
+.footer-icon img {
+  width: 54px;   /* inkl. outline i svg */
+  height: 54px;
+  display: block;
+  filter: invert(100%);  /* gør sorte SVG’er hvide */
+}
+
+/* Hover: let zoom-effekt */
+.footer-icon:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================
+   Brand/logo sektion
+   ============================================ */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;  /* afstand mellem logo og tekst */
+}
+
+/* Logo (PNG/SVG) gøres hvidt vha. filter */
+.footer-logo {
+  width: 32px;      
+  height: 32px;
+  display: block;
+  filter: brightness(0) invert(1); /* konverter til hvid */
+}
+
+/* Teksten “Gittes Glamping” */
+.footer-text {
+  font-size: 1.6rem; /* lidt større for læsbarhed */
+  font-weight: 400;
+  color: #fff;
+
+  font-family: inherit; /* arver fra .Footer → Zen Loop */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

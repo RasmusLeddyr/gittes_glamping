@@ -3,9 +3,9 @@
 import { renderActivities } from "./components/activities.js";
 renderActivities();
 import { likedListRender } from "./components/myList.js";
-likedListRender()
+likedListRender();
 import { renderLikedHero } from "./components/myList.js";
-renderLikedHero()
+renderLikedHero();
 
 import { Stays } from "./components/stays.js";
 Stays();
@@ -19,3 +19,17 @@ import { initSlider } from "./components/slider.js";
 initSlider();
 import { initFooter } from "./components/footer.js";
 initFooter();
+
+import { initContactForm } from "./components/contactform.js";
+
+if (document.body.id === "kontakt") {
+  initContactForm();
+}
+import { renderMessages } from "./components/messages.js";
+renderMessages();
+
+import { renderGitteIntro } from "./components/gitteIntro.js";
+renderGitteIntro();
+
+import { initStaysIntro } from "./components/staysIntro.js";
+initStaysIntro();

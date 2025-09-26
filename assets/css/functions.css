@@ -1,0 +1,113 @@
+/*
+
+main.css is meant to be linked to other CSS files through @import, as that will allow the other file to override custom variables.
+
+
+You can declare these custom variables on elements to affect styling.
+They will already assume the unit of a number, so make sure not to specify a unit.
+If you do not declare these variables on an element, the attached function will silently and safely fail, leaving default CSS styling intact.
+
+
+--base_width: Max width (in pixels) of your website's design. (Adaptive scaling won't go above this.)
+
+
+Adaptive variables:
+(These dictate the corresponding style values (in pixels) when the page's view-width is equal to or above base_width.)
+--ADAP_width: max-width
+--ADAP_text: font-size
+--ADAP_margl: margin-left
+--ADAP_margr: margin-right
+
+
+When view-width goes beneath base_width, the adap variables are able to shrink in sync with it.
+You can type an adap variable with "_min" or "_cut" at the end to specify a shrinking mechanic.
+
+Examples:
+{
+--ADAP_width: 32;
+--ADAP_width_min: 16;
+}
+{
+--ADAP_width: 32;
+--ADAP_width_cut: 0.5;
+}
+
+"_min" decides how small in pixels the property can shrink to.
+"_cut" decides how small, in divisions, the property can shrink to. (0-1)
+
+*/
+
+:root {
+  --base_width: 375;
+}
+
+*,
+*::before,
+*::after {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* adaptive max-width */
+  --ADAP_width_min: var(--ADAP_width);
+  --ADAP_width_cut: 1;
+  max-width: clamp(
+    var(--ADAP_width_min) * 1px * var(--ADAP_width_cut),
+    var(--ADAP_width) / var(--base_width) * 100vw,
+    var(--ADAP_width) * 1px
+  );
+
+  /* adaptive margin left */
+  --ADAP_margl_min: var(--ADAP_margl);
+  --ADAP_margl_cut: 1;
+  margin-left: clamp(
+    var(--ADAP_margl_min) * 1px * var(--ADAP_margl_cut),
+    var(--ADAP_margl) / var(--base_width) * 100vw,
+    var(--ADAP_margl) * 1px
+  );
+
+  /* adaptive margin right */
+  --ADAP_margr_min: var(--ADAP_margr);
+  --ADAP_margr_cut: 1;
+  margin-right: clamp(
+    var(--ADAP_margr_min) * 1px * var(--ADAP_margr_cut),
+    var(--ADAP_margr) / var(--base_width) * 100vw,
+    var(--ADAP_margr) * 1px
+  );
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+a,
+button,
+input,
+textarea {
+  /* adaptive font-size */
+  --ADAP_text_min: var(--ADAP_text);
+  --ADAP_text_cut: 1;
+  font-size: clamp(
+    var(--ADAP_text_min) * 1px * var(--ADAP_text_cut),
+    var(--ADAP_text) / var(--base_width) * 100vw,
+    var(--ADAP_text) * 1px
+  );
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 
+DYNAMIC WIDTH: (replace "X" with width from wireframe)
+calc(( X / var(--base_width)) * 100vw);
+*/

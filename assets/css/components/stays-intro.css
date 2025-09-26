@@ -1,0 +1,42 @@
+/* ==========================
+   Ophold intro sektion (stays-intro)
+   ========================== */
+
+#stays-lead {
+  --overlap: 83px;
+  position: relative;
+  z-index: 2;
+  margin-top: calc(-1 * var(--overlap));
+  margin-bottom: 32px;
+}
+/* Selve boksen (kortet) */
+.stays-lead__box {
+  width: 100%;
+  background: #34626C;         /* blågrøn kort baggrund */
+  color: #fff;
+  border-radius: 60px 0 60px 0;
+  padding: var(--overlap) 24px 93px 24px;
+}
+
+/* Titel */
+.stays-lead__title {
+  margin-bottom: 43px;
+  text-align: center;
+  font-family: 'Zen Loop', cursive;
+  font-weight: 400;
+  line-height: 1.06;
+  --ADAP_text: 60;
+  --ADAP_text_min: 16;
+  color: #fff;
+}
+
+/* Brødtekst */
+.stays-lead__text {
+  margin: 10px 0;
+  font-family: "Nanum Gothic", sans-serif;
+  --ADAP_text: 14;
+  --ADAP_text_min: 8;
+  line-height: 1.55;
+  text-align: center;
+  color: #fff;
+}

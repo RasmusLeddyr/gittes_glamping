@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html lang="da">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forside</title>
 
-  <!-- ÉN CSS: main.css importerer resten -->
-  <link rel="stylesheet" href="assets/css/main.css" />
-</head>
+    <!-- ÉN CSS: main.css importerer resten -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
 
-<!-- VIGTIGT: skift id pr. side: forside | ophold | kontakt | aktiviteter | min-liste -->
-<body id="forside">
+  <!-- VIGTIGT: skift id pr. side: forside | ophold | kontakt | aktiviteter | min-liste -->
+  <body id="forside">
+    <!-- Topbar (logo + burger) -->
+    <header class="Topbar">
+      <div class="container">
+        <!-- her fylder JS logo + burger ind -->
+      </div>
+    </header>
 
-  <!-- Topbar (logo + burger) -->
-  <header class="Topbar">
-    <div class="container">
-      <!-- her fylder JS logo + burger ind -->
-    </div>
-  </header>
+    <!-- Hero/slider (JS fylder indholdet) -->
+    <section class="Slider"></section>
 
-  <!-- Hero/slider (JS fylder indholdet) -->
-  <section class="Slider"></section>
-
-  <main>
-    <!-- resten af siden -->
-     <main>
+    <main>
+      <!-- resten af siden -->
+      <section id="gitte_intro"></section>
       <section id="reviews"></section>
     </main>
-  </main>
 
-  <footer class="Footer"></footer>
+    <footer class="Footer"></footer>
 
-  <!-- ÉN JS: main.js importerer komponenterne -->
-  <script type="module" src="assets/js/main.js"></script>
-</body>
+    <!-- ÉN JS: main.js importerer komponenterne -->
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>

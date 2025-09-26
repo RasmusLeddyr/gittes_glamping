@@ -1,0 +1,28 @@
+.search_input {
+  --ADAP_text: 30;
+  --ADAP_text_cut: 0.5;
+  --hover: 16px;
+  background-color: #839b97;
+  border-radius: 66px 0px 66px 0px;
+  border: 0;
+  color: white;
+  display: block;
+  filter: drop-shadow(0px 3px 15px #00000029);
+  font-family: "Zen Loop";
+  font-weight: normal;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  text-align: center;
+}
+.search_input:focus {
+    outline: 2px solid white;
+}
+
+#ophold .search_input {
+  margin-bottom: calc(87px + var(--hover));
+}
+
+#aktiviteter .search_input {
+    margin-bottom: calc(95px + var(--hover));
+}

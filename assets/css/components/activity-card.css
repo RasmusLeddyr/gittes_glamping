@@ -1,0 +1,349 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+.activity-container {
+  background-color: #cfd3ce;
+  padding-bottom: 300px;
+}
+
+.activity-hero-desc {
+  z-index: 2;
+  border-radius: 50px 0 50px 0;
+  background-color: #34626c;
+  position: absolute;
+  top: 400px;
+  padding-bottom: 60px;
+  width: 100%;
+}
+
+.activity-hero-desc h2 {
+  color: white;
+  font-family: "Zen Loop";
+  font-weight: 200;
+  font-size: 60px;
+  text-align: center;
+  padding: 80px 50px;
+  padding-bottom: 40px;
+}
+
+.activity-hero-desc p {
+  color: white;
+  text-align: center;
+  font-family: "Nanum Gothic";
+  font-size: 14px;
+  padding: 0 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.activity-hero img {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  object-fit: cover;
+  object-position: 71%;
+  z-index: 0;
+  margin-bottom: 600px;
+}
+
+.activity-hero h1 {
+  position: absolute;
+  background-color: #34626c80;
+  color: white;
+  font-family: "Zen Loop";
+  top: 0;
+  right: 0;
+  bottom: 25%;
+  left: 0;
+  display: grid;
+  place-content: start center;
+  z-index: 1;
+  padding-top: 150px;
+  font-size: 80px;
+  font-weight: 200;
+}
+
+.activity-card-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 300px;
+}
+
+.activity-card {
+  position: relative;
+  height: 250px;
+  background-color: #cfd3ce;
+}
+
+.activity-card.show {
+  height: 550px;
+}
+
+.activity-title {
+  background-color: #c6b498;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 60px;
+  font-family: "Zen Loop";
+  font-weight: 200;
+  color: white;
+  padding: 25px 10px;
+  border-radius: 60px 0 60px 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: -95px;
+  text-align: center;
+}
+
+.activity-img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+.activity-img.s {
+  width: 90%;
+  margin-left: 5%;
+  height: 700px;
+}
+
+.activity-single-container {
+  height: 650px;
+}
+
+.activity-info {
+  background-color: #34626c;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 60px 0 60px 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 170px;
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 30px;
+}
+
+.activity-info.s{
+  top: 610px;
+}
+
+.activity-day,
+.activity-time {
+  color: white;
+  font-family: "Zen Loop";
+  font-size: 30px;
+  padding-left: 20px;
+}
+
+.activity-day.s, .activity-time.s {
+  color: white;
+  font-family: "Zen Loop";
+  font-size: 30px;
+  text-align: center;
+}
+
+.activity-readmore {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px 0 30px 0;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.activity-readmore-text {
+  display: none;
+}
+
+.activity-readmore-text.show {
+  display: block;
+  color: white;
+  font-family: "Nanum Gothic";
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.like-btn {
+  position: absolute;
+  top: 200px;
+  right: 10%;
+  border-radius: 10px 0 10px 0;
+  width: 45px;
+  height: 42px;
+  padding: 8px 12px;
+  background-color: #839B97;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.single-page-open {
+  position: absolute;
+  top: 200px;
+  right: 15%;
+  height: 42px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.single-page-open.btn {
+  padding: 0px;
+  border-radius: 20px 0 20px 0;
+  font-size: 28px;
+  background-color: #c6b498;
+} 
+
+.like-btn.liked {
+  fill: white;
+}
+
+/* --- Aktivitet enkeltside: afstand under slider --- */
+body#aktivitet-single .activity-hero { 
+  display: none;               /* vi bruger den fælles Slider i stedet */
+}
+
+body#aktivitet-single .activity-container {
+  background: #cfd3ce;
+  padding-top: 24px;           /* lille buffer under slider */
+}
+
+body#aktivitet-single .activity-single-container {
+  width: min(1200px, 92%);
+  margin: 120px auto 0;        /* justér 100–160px efter behov */
+}
+
+body#aktivitet-single .activity-single-container .activity-card {
+  margin-top: 0;
+}
+
+@media (min-width: 900px) {
+  body#aktivitet-single .activity-single-container {
+    margin-top: 150px;
+  }
+}
+
+/* ==========================================================
+   Mobil (≤425px):
+   ========================================================== */
+@media (max-width: 425px) {
+  /* Giv ekstra plads i toppen af den blå boks til knap + hjerte */
+  .activity-card .activity-info {
+    padding-top: 56px;  /* justér 48–64px efter behov */
+  }
+
+  /* "Se Aktivitet" – lidt mindre og placeret øverst t.h. i boksen */
+  .activity-card .single-page-open.btn {
+    position: absolute;
+    top: 180px;     /* løfter den op (blå boks starter ved top:165px) */
+    right: 64px;    /* afstand fra højre – giver plads til hjertet */
+    font-size: 16px;
+    padding: 6px 14px;
+    border-radius: 12px 0 12px 0;
+    background-color: #c6b498;
+    width: auto;
+    height: auto;
+    z-index: 2;
+  }
+
+  /* Hjerte – mindre og helt ude til højre */
+  .activity-card .like-btn {
+    position: absolute;
+    top: 180px;     /* samme højde som knappen */
+    right: 30px;    /* helt ude i højre side */
+    width: 30px;
+    height: 28px;
+    padding: 4px;
+    border-radius: 8px 0 8px 0;
+    background-color: #839B97;
+    z-index: 2;
+  }
+}
+
+/* ========= Single activity: kun mobil-fix ========= */
+@media (max-width: 480px) {
+  body#aktivitet-single .activity-single-container {
+    width: 92%;
+    margin: 24px auto 0;
+    height: auto; /* ingen fast højde på mobil */
+  }
+
+  body#aktivitet-single .activity-single-container .activity-card {
+    height: auto;
+    background: transparent;
+  }
+
+  body#aktivitet-single .activity-title.s {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    margin: 0 0 12px;
+    border-radius: 36px 0 36px 0;
+    font-size: 28px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  body#aktivitet-single .activity-img.s {
+    width: 100%;
+    height: auto;  /* fjern 700px fix */
+    margin: 0;
+  }
+
+  body#aktivitet-single .activity-info.s {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 36px 0 36px 0;
+  }
+
+  body#aktivitet-single .activity-day.s,
+  body#aktivitet-single .activity-time.s {
+    font-size: 20px;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  body#aktivitet-single .activity-readmore-text.show {
+    padding: 12px 6px 0;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  body#aktivitet-single .activity-container {
+    padding-bottom: 60px; /* mindre luft i bunden på mobil */
+  }
+
+  body#aktivitet-single .activity-single-container {
+    margin-bottom: 0; /* ingen ekstra hul */
+  }
+}
+
+/* Tablet spacing (≈ 600–900px) — push the heart a bit further right from the button */
+@media (min-width: 600px) and (max-width: 900px) {
+  /* move the button a little more inwards */
+  .activity-card .single-page-open.btn {
+    right: 12%;       /* was 15% */
+    top: 180px;       /* keep aligned with heart */
+  }
+
+  /* move the heart towards the edge and give it a touch more size */
+  .activity-card .like-btn {
+    right: 6%;        /* was ~10% -> creates a bigger gap to the button */
+    top: 178px;
+    width: 38px;
+    height: 34px;
+    padding: 6px;
+  }
+}

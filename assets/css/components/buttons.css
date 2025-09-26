@@ -9,6 +9,7 @@
     background-color: #839B97;
     font-family: "Zen Loop";
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .btn-clear {
@@ -19,4 +20,5 @@
     background-color: transparent;
     font-family: "Zen Loop";
     font-size: 2rem;
+    cursor: pointer;
 }

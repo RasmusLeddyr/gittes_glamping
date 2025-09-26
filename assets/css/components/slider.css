@@ -1,0 +1,198 @@
+/* =====================================================
+   Import Google Fonts
+   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
+
+/* =====================================================
+   HERO SLIDER – base container
+   ===================================================== */
+.Slider {
+  position: relative;
+  width: 100%;
+  height: 50vh;   /* Standardhøjde på undersider */
+  overflow: hidden;
+}
+
+/* Forsiden: større hero med mere visuel effekt */
+.Slider.home { 
+  height: 80vh;
+}
+
+/* =====================================================
+   Slider billeder
+   ===================================================== */
+.Slider img {
+  position: absolute;
+  inset: 0;                     /* udfylder hele containeren */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;            /* dækker containeren uden at forvrænge */
+  opacity: 0;                   /* usynlig som default */
+  transition: opacity .8s ease; /* fade mellem billeder */
+}
+
+/* Aktivt billede (det synlige) */
+.Slider img.active { 
+  opacity: 1; 
+}
+
+/* =====================================================
+   Blå tint overlay (for at gøre tekst mere læsbar)
+   ===================================================== */
+.Slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(47, 79, 83, 0.70) 0%,   /* top */
+    rgba(47, 79, 83, 0.58) 40%,  /* midten */
+    rgba(47, 79, 83, 0.48) 100%  /* bund */
+  );
+  z-index: 1;                   /* over billeder, men under tekst */
+  backdrop-filter: blur(1.5px); /* subtil blur på baggrunden */
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+/* På mobil: mørkere tint = bedre læsbarhed */
+@media (max-width: 600px) {
+  .Slider::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(47, 79, 83, 0.78) 0%,
+      rgba(47, 79, 83, 0.65) 45%,
+      rgba(47, 79, 83, 0.55) 100%
+    );
+  }
+}
+
+/* =====================================================
+   Overlay lag (tekst ovenpå slider)
+   ===================================================== */
+.slider-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;        /* teksten skal ligge over tinten */
+  display: flex;
+  pointer-events: none; /* tekst skal ikke blokere klik på CTA */
+}
+
+/* =====================================================
+   UNDERSIDER (ikke-forside) – centreret titel
+   ===================================================== */
+.Slider:not(.home) .slider-overlay {
+  align-items: center;     /* lodret centreret */
+  justify-content: center; /* horisontalt centreret */
+  padding: 0;
+  text-align: center;
+}
+
+.Slider:not(.home) .hero-title {
+  margin: 0;
+  color: #fff;
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(3rem, 8vh, 6rem); /* responsiv tekststørrelse */
+  line-height: 1.1;
+  letter-spacing: .5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35); /* kontrast mod baggrunden */
+
+  /* Lidt optisk justering */
+  transform: translateX(6px);
+
+  font-weight: 400; /* let udtryk */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =====================================================
+   FORSIDE – logo, undertitel, CTA-knap
+   ===================================================== */
+.Slider.home .slider-overlay {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;   /* stable elementer vertikalt */
+  gap: .5rem;               /* afstand mellem elementer */
+  padding: 0 1rem;
+  text-align: center;
+}
+
+/* Logo */
+.Slider.home .hero-logo {
+  width: 72px;
+  height: auto;
+  filter: invert(100%); /* gør logo hvidt */
+  pointer-events: none; /* ikke klikbart */
+}
+
+/* Undertitel (fx “Gittes”) */
+.Slider.home .hero-subtitle {
+  margin: .25rem 0 0;
+  color: #fff;
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(1.6rem, 4vh, 3rem);
+
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hovedtitel (fx “Glamping”) */
+.Slider.home .hero-title {
+  color: #fff;
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(3.5rem, 9vh, 7rem); /* responsiv */
+  line-height: 1.1;
+  letter-spacing: .5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,.35);
+  transform: translateX(6px);
+
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CTA-knap ("Book nu") */
+.Slider.home .cta-btn {
+  margin-top: 1rem;
+  padding: .8rem 1.6rem;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  pointer-events: auto;          /* gør knappen klikbar */
+  transition: background .2s ease;
+
+  font-family: 'Zen Loop', cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(1.4rem, 3.2vh, 2.4rem);
+
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hover-effekt på CTA-knap */
+.Slider.home .cta-btn:hover {
+  background: rgba(255, 255, 255, .15);
+}
+
+/* =====================================================
+   Overlap-sektion (valgfri effekt til næste sektion)
+   ===================================================== */
+.Slider + .overlap-section {
+  position: relative;
+  z-index: 3;
+  margin-top: -32px;           /* overlapper slider */
+  padding: 1.5rem 1rem 2rem;
+  background: #3e6668;         /* baggrundsfarve */
+  color: #f4f7f7;
+  border-top-left-radius: 48px; /* buet top */
+}
+
+/* På lidt større skærme */
+@media (min-width: 600px) {
+  .Slider + .overlap-section {
+    margin-top: -48px;
+    padding: 2rem 1.25rem 2.5rem;
+    border-top-left-radius: 64px;
+  }
+}

@@ -1,0 +1,81 @@
+/* =====================================================
+   Gitte Intro Sektion
+   ===================================================== */
+
+/* Wrapper for hele sektionen */
+.gitte-intro {
+  background: #34626C;           /* teal/kontaktfarven */
+  color: #fff;                   /* hvid tekst ovenpå teal */
+  border-top-left-radius: 60px;  /* buet hjørne → konsistent formsprog */
+  padding: 56px 18px 72px;       /* luft inde i boksen (T:56px, H:18px, B:72px) */
+  --overlap: 83px;               /* variabel til overlap-effekt */
+  position: relative;
+  z-index: 2;                    /* placer ovenpå forrige sektion */
+  margin-top: calc(-1 * var(--overlap)); /* overlap slider med 83px */
+}
+
+/* Indre container – centreret med max-bredde */
+.gi-wrap {
+  max-width: 860px;
+  margin: 0 auto;         /* centrer på siden */
+  text-align: center;     /* centrér tekst og foto */
+}
+
+/* Overskrift */
+.gi-title {
+  font-family: "Zen Loop", cursive, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 400;
+  font-size: clamp(32px, 7vw, 64px); /* dynamisk størrelse */
+  line-height: 1.05;                 /* tæt linjeafstand */
+  margin: 0 0 18px;                  /* luft under titel */
+}
+
+/* Brødtekst */
+.gi-text {
+  font-family: "Nanum Gothic", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: clamp(14px, 2.4vw, 17px); /* justerer efter skærmstørrelse */
+  line-height: 1.6;                    /* læsevenlig linjeafstand */
+  opacity: .95;                        /* lidt blødere tekstfarve */
+  margin: 0 auto 28px;                 /* centrer og giv luft under */
+  max-width: 680px;                    /* læsbar linjelængde */
+}
+
+/* Foto-wrapper (til at centrere og give luft) */
+.gi-photo-wrap {
+  margin: 6px 0 28px; /* lidt luft over/under foto */
+}
+
+/* Selve fotoet */
+.gi-photo {
+  width: clamp(160px, 36vw, 220px);  /* responsiv størrelse */
+  height: clamp(160px, 36vw, 220px);
+  object-fit: cover;                 /* beskær billedet uden at strække */
+  border-radius: 999px;              /* gør billedet helt rundt */
+  border: 6px solid rgba(255,255,255,.25); /* diskret hvid kant */
+  display: inline-block;
+}
+
+/* Call-to-action knap */
+.gi-cta.btn {
+  display: inline-block;
+  margin-top: 4px;                   /* lidt luft over knap */
+  padding: 18px 44px;                /* afbalanceret padding */
+  border-radius: 50px 0 50px 0;      /* signaturhjørner */
+  background: #839B97;               /* jeres grøn/grå accent */
+  color: #fff;
+  text-decoration: none;
+  font-family: "Zen Loop", cursive;
+  font-size: clamp(22px, 5vw, 32px); /* responsiv knaptekst */
+  border: none;
+  cursor: pointer;
+}
+
+/* =====================================================
+   Responsivt design
+   ===================================================== */
+@media (min-width: 900px) {
+  .gitte-intro {
+    padding: 72px 24px 88px;      /* mere luft på større skærme */
+    border-radius: 60px 0 60px 0; /* flere buede hjørner → “kort-look” */
+  }
+}
