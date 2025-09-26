@@ -48,7 +48,7 @@
 
 .liked-hero-container img {
   width: 100%;
-  height: 450px;
+  height: 500px;
   position: relative;
   object-fit: cover;
   object-position: 71%;
@@ -63,8 +63,8 @@
   font-family: "Zen Loop";
   top: 0;
   right: 0;
-  bottom: 30%;
   left: 0;
+  height: 450px;
   display: grid;
   place-content: start center;
   z-index: 1;
